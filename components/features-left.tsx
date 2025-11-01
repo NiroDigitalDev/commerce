@@ -12,7 +12,7 @@ const FeaturesLeft = () => {
       <div className="relative z-10 bg-transparent dark:bg-transparent">
         <div className="mx-auto max-w-7xl px-5">
           <div className="flex flex-col lg:flex-row items-start gap-y-24 gap-x-[140px]">
-            <div className="w-full lg:flex-1 lg:sticky lg:top-1/2 lg:-translate-y-1/2 lg:max-w-full max-w-[520px] lg:mx-0 mx-auto text-center lg:text-left flex flex-col justify-center lg:pt-8">
+            <div className="w-full lg:flex-1 lg:sticky lg:top-[20%] lg:max-w-full max-w-[520px] lg:mx-0 mx-auto text-center lg:text-left flex flex-col justify-start">
               <Reveal delay={0.2}>
                 <Badge variant="secondary" className="mb-5">
                   Matcha Excellence

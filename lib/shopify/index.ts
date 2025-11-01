@@ -271,17 +271,17 @@ export async function getCart(): Promise<Cart | undefined> {
   }
 
   try {
-    const res = await shopifyFetch<ShopifyCartOperation>({
-      query: getCartQuery,
-      variables: { cartId }
-    });
+  const res = await shopifyFetch<ShopifyCartOperation>({
+    query: getCartQuery,
+    variables: { cartId }
+  });
 
-    // Old carts becomes `null` when you checkout.
-    if (!res.body.data.cart) {
-      return undefined;
-    }
+  // Old carts becomes `null` when you checkout.
+  if (!res.body.data.cart) {
+    return undefined;
+  }
 
-    return reshapeCart(res.body.data.cart);
+  return reshapeCart(res.body.data.cart);
   } catch (error) {
     console.error('Error fetching cart:', error);
     return undefined;
@@ -374,22 +374,22 @@ export async function getMenu(handle: string): Promise<Menu[]> {
   cacheLife('days');
 
   try {
-    const res = await shopifyFetch<ShopifyMenuOperation>({
-      query: getMenuQuery,
-      variables: {
-        handle
-      }
-    });
+  const res = await shopifyFetch<ShopifyMenuOperation>({
+    query: getMenuQuery,
+    variables: {
+      handle
+    }
+  });
 
-    return (
-      res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
-        title: item.title,
-        path: item.url
-          .replace(domain, '')
-          .replace('/collections', '/search')
-          .replace('/pages', '')
-      })) || []
-    );
+  return (
+    res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
+      title: item.title,
+      path: item.url
+        .replace(domain, '')
+        .replace('/collections', '/search')
+        .replace('/pages', '')
+    })) || []
+  );
   } catch (error) {
     console.error('Error fetching menu:', error);
     return [];

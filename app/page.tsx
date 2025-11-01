@@ -3,7 +3,6 @@ import Blog from "components/blog";
 import CollectionsSection from "components/collections-section";
 import Faq from "components/faq";
 import HeroSection from "components/hero-section";
-import NewsletterSection from "components/newsletter-section";
 import ProductsSection from "components/products-section";
 import VideoSectionsWrapper from "components/video-sections-wrapper";
 import { COLLECTION_HANDLES } from "lib/constants";
@@ -41,7 +40,6 @@ export default async function HomePage() {
         <AboutStore />
         <Blog />
         <Faq />
-        <NewsletterSection />
       </div>
     </>
   );
