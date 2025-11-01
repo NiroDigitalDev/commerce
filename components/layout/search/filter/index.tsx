@@ -6,7 +6,7 @@ import { FilterItem } from './item';
 export type ListItem = SortFilterItem | PathFilterItem;
 export type PathFilterItem = { title: string; path: string };
 
-function FilterItemList({ list }: { list: ListItem[] }) {
+function FilterItemList({ list }: { list: readonly ListItem[] }) {
   return (
     <>
       {list.map((item: ListItem, i) => (
@@ -16,12 +16,12 @@ function FilterItemList({ list }: { list: ListItem[] }) {
   );
 }
 
-export default function FilterList({ list, title }: { list: ListItem[]; title?: string }) {
+export default function FilterList({ list, title }: { list: readonly ListItem[]; title?: string }) {
   return (
     <>
       <nav>
         {title ? (
-          <h3 className="hidden text-xs text-neutral-500 md:block dark:text-neutral-400">
+          <h3 className="hidden text-sm text-neutral-500 md:block dark:text-neutral-400">
             {title}
           </h3>
         ) : null}

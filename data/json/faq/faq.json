@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "question": "What is ceremonial grade matcha?",
+    "answer": "Ceremonial grade matcha is the highest quality matcha, traditionally used in Japanese tea ceremonies. It's made from the youngest, most tender tea leaves, stone-ground into a fine powder. Our ceremonial grade matcha has a vibrant green color, smooth texture, and delicate, umami-rich flavor without bitterness."
+  },
+  {
+    "id": 2,
+    "question": "How should I store my matcha?",
+    "answer": "Store matcha in a cool, dark, and dry place, ideally in an airtight container in the refrigerator. Keep it away from light, heat, moisture, and strong odors. Once opened, consume within 2-3 months for optimal freshness and flavor. Avoid storing near spices or other strong-smelling foods."
+  },
+  {
+    "id": 3,
+    "question": "What's the difference between ceremonial and culinary grade matcha?",
+    "answer": "Ceremonial grade matcha is made from the finest first-harvest leaves and is meant to be enjoyed on its own with just hot water. It has a delicate, sweet flavor. Culinary grade matcha is made from slightly older leaves and is designed for use in recipes like lattes, smoothies, and baked goods, where other ingredients complement its stronger, more robust flavor."
+  },
+  {
+    "id": 4,
+    "question": "How do I prepare the perfect cup of matcha?",
+    "answer": "Sift 1-2 teaspoons of matcha into a bowl. Add 2-3 ounces of hot water (175°F, not boiling). Whisk vigorously in a 'W' or 'M' motion with a bamboo whisk (chasen) until frothy. For lattes, whisk matcha with a small amount of hot water first, then add steamed milk. The key is to whisk until smooth and frothy."
+  },
+  {
+    "id": 5,
+    "question": "Where does your matcha come from?",
+    "answer": "We source our matcha directly from renowned tea farms in Japan, primarily from regions like Uji (Kyoto), Nishio (Aichi), and Shizuoka. These areas are famous for producing the highest quality matcha due to their ideal climate, soil conditions, and traditional farming methods passed down through generations."
+  },
+  {
+    "id": 6,
+    "question": "What are the health benefits of matcha?",
+    "answer": "Matcha is rich in antioxidants, particularly EGCG (epigallocatechin gallate), which may support metabolism and provide calm energy. It contains L-theanine, which promotes relaxation and focus. Since you consume the whole leaf, matcha provides more nutrients than steeped tea, including vitamins, minerals, and fiber."
+  },
+  {
+    "id": 7,
+    "question": "Does matcha contain caffeine?",
+    "answer": "Yes, matcha contains caffeine, but typically less than coffee (about 70mg per serving compared to 95mg in coffee). However, matcha's caffeine is balanced by L-theanine, which creates a calm, sustained energy without the jitters or crash often associated with coffee. The energy release is more gradual and gentle."
+  },
+  {
+    "id": 8,
+    "question": "How long does matcha stay fresh?",
+    "answer": "Unopened matcha can stay fresh for up to 2 years when stored properly. Once opened, it's best consumed within 2-3 months for optimal flavor and color. Matcha's vibrant green color and delicate flavor are indicators of freshness. If it turns brownish or tastes stale, it may have oxidized."
+  }
+]
+

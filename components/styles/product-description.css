@@ -1,0 +1,512 @@
+/* =========================
+   Product Description Styles
+   =========================
+   
+   Product info, pricing, variants, and add-to-cart section.
+   Matches form input and section patterns from design system.
+   ========================= */
+
+@layer utilities {
+  /* ===== Product Header ===== */
+  .product-header {
+    @apply mb-6 flex flex-col;
+  }
+
+  .product-title {
+    @apply mb-0 font-bold text-neutral-900 dark:text-white;
+    font-size: var(--font-size-5xl);
+    line-height: var(--leading-tight);
+  }
+
+  /* ===== Price Display ===== */
+  .product-price-wrapper {
+    @apply mr-auto w-auto rounded-full bg-primary text-primary-foreground;
+    padding: var(--spacing-2);
+    font-size: var(--font-size-sm);
+  }
+
+  .product-price {
+    @apply font-semibold;
+  }
+
+  /* ===== Section Divider ===== */
+  .product-divider {
+    @apply border-b border-neutral-200 dark:border-neutral-700;
+    margin-block: var(--spacing-6);
+  }
+
+  /* ===== Variants Section ===== */
+  .product-variants {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .product-variant-label {
+    @apply mb-4 uppercase tracking-wide text-neutral-700 dark:text-neutral-300;
+    font-size: var(--font-size-sm);
+  }
+
+  .product-variant-options {
+    @apply flex flex-wrap;
+    gap: var(--spacing-3);
+  }
+
+  .product-variant-button {
+    @apply flex items-center justify-center rounded-full border bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900;
+    min-width: 48px;
+    padding-inline: var(--spacing-2);
+    padding-block: var(--spacing-1);
+    font-size: var(--font-size-sm);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .product-variant-button:hover:not(.product-variant-button-disabled) {
+    @apply ring-1 ring-primary;
+  }
+
+  .product-variant-button:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Active variant state */
+  .product-variant-button-active {
+    @apply cursor-default ring-2 ring-primary;
+  }
+
+  /* Disabled variant state (out of stock) */
+  .product-variant-button-disabled {
+    @apply relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 ring-1 ring-neutral-300 dark:bg-neutral-900 dark:text-neutral-400 dark:ring-neutral-700;
+  }
+
+  .product-variant-button-disabled::before {
+    @apply absolute inset-x-0 -z-10 h-px -rotate-45 bg-neutral-300 dark:bg-neutral-700;
+    content: "";
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  /* ===== Description Content ===== */
+  .product-description {
+    @apply mb-6 leading-tight text-neutral-600 dark:text-white/60;
+    font-size: var(--font-size-sm);
+  }
+
+  .product-description h1,
+  .product-description h2,
+  .product-description h3,
+  .product-description h4,
+  .product-description h5,
+  .product-description h6 {
+    @apply font-bold text-neutral-900 dark:text-white;
+    margin-top: var(--spacing-4);
+    margin-bottom: var(--spacing-2);
+  }
+
+  .product-description h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .product-description h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .product-description h3 {
+    font-size: var(--font-size-lg);
+  }
+
+  .product-description p {
+    margin-bottom: var(--spacing-4);
+  }
+
+  .product-description ul,
+  .product-description ol {
+    margin-left: var(--spacing-5);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .product-description li {
+    margin-bottom: var(--spacing-2);
+  }
+
+  .product-description a {
+    @apply text-primary underline hover:opacity-80;
+  }
+
+  .product-description strong {
+    @apply font-semibold text-neutral-900 dark:text-white;
+  }
+
+  .product-description em {
+    @apply italic;
+  }
+
+  .product-description code {
+    @apply rounded bg-neutral-100 px-1 py-0.5 font-mono text-sm dark:bg-neutral-800;
+  }
+
+  .product-description blockquote {
+    @apply border-l-4 border-neutral-300 pl-4 italic text-neutral-600 dark:border-neutral-700 dark:text-neutral-400;
+    margin-block: var(--spacing-4);
+  }
+
+  /* ===== Rating Section ===== */
+  .product-rating-wrapper {
+    @apply mb-3;
+  }
+
+  .product-rating {
+    @apply flex items-center gap-2;
+  }
+
+  .product-stars {
+    @apply flex items-center gap-0.5;
+  }
+
+  .product-star {
+    @apply text-neutral-300 dark:text-neutral-600;
+    transition: color 0.2s ease;
+  }
+
+  .product-star.filled {
+    @apply text-yellow-400;
+  }
+
+  .product-rating-text {
+    @apply text-sm text-neutral-600 dark:text-neutral-400;
+    font-weight: 500;
+  }
+
+  /* ===== Updated Price Section ===== */
+  .product-price-section {
+    @apply mb-6 pb-6 border-b dark:border-neutral-700;
+  }
+
+  .product-price-main {
+    @apply flex items-center gap-3 flex-wrap;
+  }
+
+  .product-price-original {
+    @apply text-neutral-500 line-through text-lg;
+  }
+
+  .product-price-current {
+    @apply text-3xl font-bold text-neutral-900 dark:text-white;
+  }
+
+  .product-discount-badge {
+    @apply inline-flex items-center rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  /* ===== Bulk Discounts Section ===== */
+  .product-bulk-discounts {
+    @apply mb-6;
+  }
+
+  .bulk-discount-title {
+    @apply mb-4 text-base font-semibold text-neutral-900 dark:text-white uppercase tracking-wide;
+  }
+
+  .bulk-discount-cards {
+    @apply grid gap-3;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .bulk-discount-card {
+    @apply relative flex flex-col items-center justify-center rounded-xl border-2 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 transition-all duration-300;
+    padding: 1.5rem 1rem;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .bulk-discount-card:hover {
+    @apply border-primary/50 dark:border-primary/50 transform scale-105;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .bulk-discount-card.active {
+    @apply border-primary bg-primary/5 dark:bg-primary/10;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .bulk-discount-card:focus {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  .bulk-discount-card-badge {
+    @apply mb-3 flex items-center justify-center rounded-full bg-primary text-white;
+    width: 50px;
+    height: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .bulk-discount-card.active .bulk-discount-card-badge {
+    @apply bg-green-600;
+  }
+
+  .bulk-discount-percentage {
+    @apply text-white font-bold text-sm;
+  }
+
+  .bulk-discount-card-badge svg {
+    color: white;
+  }
+
+  .bulk-discount-card-quantity {
+    @apply mb-1 text-lg font-bold text-neutral-900 dark:text-white;
+  }
+
+  .bulk-discount-card-label {
+    @apply text-sm text-neutral-600 dark:text-neutral-400 font-medium;
+  }
+
+  .bulk-discount-card.active .bulk-discount-card-label {
+    @apply text-primary dark:text-primary font-semibold;
+  }
+
+  /* Responsive bulk discount cards */
+  @media (max-width: 640px) {
+    .bulk-discount-cards {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+
+    .bulk-discount-card {
+      padding: 1rem 0.5rem;
+    }
+
+    .bulk-discount-card-badge {
+      width: 40px;
+      height: 40px;
+      font-size: 0.875rem;
+    }
+
+    .bulk-discount-card-quantity {
+      font-size: 0.875rem;
+    }
+
+    .bulk-discount-card-label {
+      font-size: 0.75rem;
+    }
+  }
+
+  /* ===== Price Above Actions ===== */
+  .product-price-above-actions {
+    @apply mb-4;
+  }
+
+  .product-price-above-actions .price-label {
+    @apply block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2 uppercase tracking-wide;
+  }
+
+  .product-price-above-actions .price-with-discount .price-values {
+    @apply flex items-center gap-3;
+  }
+
+  .product-price-above-actions .product-price-original-inline {
+    @apply text-base text-neutral-500 line-through;
+  }
+
+  .product-price-above-actions .product-price-current-inline {
+    @apply text-2xl font-bold text-neutral-900 dark:text-white;
+  }
+
+  .product-price-above-actions .price-simple {
+    @apply flex flex-col;
+  }
+
+  /* ===== Product Actions Row (Quantity + Add to Cart) ===== */
+  .product-actions-row {
+    @apply mb-6 flex flex-wrap items-center gap-4;
+  }
+
+  .product-quantity-wrapper-inline {
+    @apply flex-shrink-0;
+  }
+
+  .product-quantity-picker {
+    @apply inline-flex items-center rounded-full bg-primary text-primary-foreground;
+    overflow: hidden;
+    border: none;
+    height: 52px;
+  }
+
+  .quantity-button {
+    @apply flex items-center justify-center text-primary-foreground transition-colors;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 52px;
+    height: 52px;
+  }
+
+  .quantity-button:hover:not(:disabled) {
+    @apply bg-primary-foreground/20;
+  }
+
+  .quantity-button:disabled {
+    @apply cursor-not-allowed opacity-40;
+  }
+
+  .quantity-button:active:not(:disabled) {
+    @apply bg-primary-foreground/30;
+  }
+
+  .quantity-input {
+    @apply bg-transparent px-4 text-center font-semibold text-primary-foreground;
+    width: 60px;
+    height: 52px;
+    border: none;
+    -moz-appearance: textfield;
+  }
+
+  .quantity-input::-webkit-outer-spin-button,
+  .quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .quantity-input:focus {
+    @apply outline-none;
+  }
+
+  .product-add-to-cart-inline {
+    @apply flex-1 min-w-[200px];
+  }
+
+  .product-add-to-cart-inline form {
+    @apply w-full;
+  }
+
+  .product-add-to-cart-inline button {
+    @apply w-full;
+    height: 52px;
+  }
+
+  /* Responsive actions row */
+  @media (max-width: 768px) {
+    .product-actions-row {
+      @apply flex-col items-stretch;
+    }
+
+    .product-quantity-wrapper-inline,
+    .product-add-to-cart-inline {
+      @apply w-full;
+    }
+
+    .product-quantity-picker {
+      @apply w-full justify-center;
+    }
+  }
+
+  /* ===== Trust Badges ===== */
+  .product-trust-badges {
+    @apply grid gap-3 pt-6 mt-6 border-t border-neutral-200 dark:border-neutral-700;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trust-badge {
+    @apply flex items-center gap-2 rounded-lg bg-neutral-50 dark:bg-neutral-900 p-3 transition-colors;
+  }
+
+  .trust-badge:hover {
+    @apply bg-neutral-100 dark:bg-neutral-800;
+  }
+
+  .trust-badge svg {
+    @apply flex-shrink-0 text-primary;
+  }
+
+  .trust-badge span {
+    @apply text-sm font-medium text-neutral-700 dark:text-neutral-300;
+  }
+
+  /* Responsive trust badges */
+  @media (max-width: 640px) {
+    .product-trust-badges {
+      grid-template-columns: 1fr;
+    }
+
+    .trust-badge {
+      padding: 0.75rem;
+    }
+
+    .trust-badge svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .trust-badge span {
+      font-size: 0.813rem;
+    }
+  }
+  .product-quantity-wrapper {
+    @apply mb-6;
+  }
+
+  .product-quantity-label {
+    @apply mb-2 block text-sm font-semibold text-neutral-900 dark:text-white uppercase tracking-wide;
+  }
+
+  .product-quantity-picker {
+    @apply inline-flex items-center rounded-full bg-primary text-primary-foreground;
+    overflow: hidden;
+    border: none;
+  }
+
+  .quantity-button {
+    @apply flex items-center justify-center p-3 text-primary-foreground transition-colors;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .quantity-button:hover:not(:disabled) {
+    @apply bg-primary-foreground/20;
+  }
+
+  .quantity-button:disabled {
+    @apply cursor-not-allowed opacity-40;
+  }
+
+  .quantity-button:active:not(:disabled) {
+    @apply bg-primary-foreground/30;
+  }
+
+  .quantity-input {
+    @apply bg-transparent px-4 py-2 text-center font-semibold text-primary-foreground;
+    width: 60px;
+    border: none;
+    -moz-appearance: textfield;
+  }
+
+  .quantity-input::-webkit-outer-spin-button,
+  .quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .quantity-input:focus {
+    @apply outline-none;
+  }
+
+  /* Updated Header (removed price) */
+  .product-header {
+    @apply mb-6 flex flex-col;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .product-title {
+    @apply mb-0 font-bold text-neutral-900 dark:text-white;
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 768px) {
+    .product-title {
+      font-size: 3rem;
+    }
+  }
+}

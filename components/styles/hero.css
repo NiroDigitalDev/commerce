@@ -1,0 +1,159 @@
+/* =========================
+   Hero Section Styles
+   =========================
+   
+   Landing page hero styling with parallax effects.
+   All effects are theme-configurable.
+   ========================= */
+
+@layer utilities {
+  /* ===== Hero Section ===== */
+  .hero-section {
+    @apply relative flex items-center overflow-hidden;
+    min-height: 100svh;
+    background-color: #E6E7E1;
+    z-index: 0;
+  }
+  
+  /* ===== Hero Content ===== */
+  .hero-content {
+    @apply fixed mx-auto max-w-7xl w-full left-0 right-0 top-1/2 -translate-y-1/2;
+    z-index: 50;
+    padding-inline: var(--section-x, var(--spacing-5));
+    padding-block: var(--spacing-20);
+    transition: opacity var(--duration-slow) var(--ease-out);
+    pointer-events: auto;
+  }
+  
+  @media (min-width: 768px) {
+    .hero-content {
+      padding-block: var(--spacing-32);
+    }
+  }
+  
+  .hero-content-wrapper {
+    max-width: 48rem; /* 3xl */
+  }
+  
+  /* ===== Hero Title ===== */
+  .hero-title {
+    @apply text-neutral-900 dark:text-white uppercase;
+    font-size: var(--hero-title-size, var(--font-size-6xl));
+    line-height: 0.95;
+    letter-spacing: var(--tracking-wide);
+    margin-bottom: var(--spacing-6);
+  }
+  
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: var(--font-size-7xl);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: var(--font-size-8xl);
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .hero-title {
+      font-size: var(--hero-title-size, var(--font-size-9xl));
+    }
+  }
+  
+  .hero-title-highlight {
+    @apply text-primary;
+  }
+  
+  /* ===== Hero Subtitle ===== */
+  .hero-subtitle {
+    @apply text-neutral-700 dark:text-neutral-200 max-w-2xl leading-relaxed;
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-8);
+  }
+  
+  @media (min-width: 768px) {
+    .hero-subtitle {
+      font-size: var(--font-size-3xl);
+    }
+  }
+  
+  /* ===== Hero Buttons ===== */
+  .hero-buttons {
+    @apply flex flex-wrap;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-10);
+  }
+  
+  .hero-button {
+    @apply inline-flex items-center justify-center gap-2 shadow-xl font-semibold whitespace-nowrap;
+    font-size: var(--font-size-xl);
+    padding-inline: var(--spacing-10);
+    padding-block: var(--spacing-5);
+  }
+  
+  /* ===== Hero Features ===== */
+  .hero-features {
+    @apply flex flex-wrap;
+    gap: var(--spacing-6);
+  }
+  
+  @media (min-width: 768px) {
+    .hero-features {
+      gap: var(--spacing-8);
+    }
+  }
+  
+  .hero-feature {
+    @apply flex items-center text-neutral-700 dark:text-neutral-200;
+    gap: var(--spacing-2);
+  }
+  
+  .hero-feature-icon {
+    @apply flex items-center justify-center rounded-full bg-primary/10;
+    width: var(--spacing-9);
+    height: var(--spacing-9);
+  }
+  
+  .hero-feature-icon svg {
+    @apply text-primary;
+    width: var(--spacing-5);
+    height: var(--spacing-5);
+  }
+  
+  .hero-feature-text {
+    @apply font-medium;
+    font-size: var(--font-size-sm);
+  }
+  
+  @media (min-width: 768px) {
+    .hero-feature-text {
+      font-size: var(--font-size-base);
+    }
+  }
+  
+  /* ===== Hero Background ===== */
+  .hero-background {
+    @apply absolute inset-0 bg-cover bg-center bg-no-repeat scale-150;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity var(--duration-slow) var(--ease-out);
+    will-change: transform;
+  }
+  
+  /* ===== Theme Overrides ===== */
+  /* Brutalist theme removes parallax */
+  [data-theme="brutalist"] .hero-background {
+    transform: none !important;
+  }
+  
+  [data-theme="brutalist"] .hero-section {
+    background-color: #FFFFFF;
+  }
+  
+  [data-theme="brutalist"] .dark .hero-section {
+    background-color: #000000;
+  }
+}
+

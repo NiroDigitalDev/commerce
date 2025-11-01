@@ -1,0 +1,130 @@
+/* =========================
+   Default Theme
+   =========================
+   
+   Modern, clean design with soft rounded corners,
+   subtle shadows, and smooth transitions.
+   ========================= */
+
+[data-theme="default"],
+:root {
+  /* ===== Component Overrides ===== */
+  /* Buttons */
+  --button-radius: var(--radius-full);
+  --button-shadow: var(--shadow-base);
+  --button-hover-shadow: var(--shadow-lg);
+  --button-transition: var(--transition-all);
+  
+  /* Cards */
+  --card-radius: var(--radius-3xl);
+  --card-padding: var(--spacing-6);
+  --card-shadow: var(--shadow-base);
+  --card-hover-shadow: var(--shadow-xl);
+  --card-hover-scale: 1.02;
+  --card-transition: all var(--duration-slow) var(--ease-out);
+  
+  /* Sections */
+  --section-header-align: center;
+  --section-title-size: var(--font-size-5xl);
+  --section-spacing-y: var(--section-y);
+  
+  /* Hero */
+  --hero-title-size: var(--font-size-8xl);
+  --hero-parallax-intensity: 0.1;
+  --hero-fade-start: 50%;
+  --hero-fade-end: 90%;
+  
+  /* Product Card */
+  --product-card-radius: var(--radius-3xl);
+  --product-card-image-radius: var(--radius-3xl);
+  --product-card-hover-scale: 1.02;
+  --product-card-image-hover-scale: 1.05;
+  
+  /* Collections Grid */
+  --collection-card-radius: var(--radius-3xl);
+  --collection-card-padding: var(--spacing-8);
+  --collection-hover-scale: 1.02;
+  
+  /* Navigation */
+  --nav-height: 4rem;
+  --nav-blur: 12px;
+  --nav-shadow: var(--shadow-sm);
+  
+  /* Footer */
+  --footer-padding-y: var(--spacing-24);
+  
+  /* Inputs */
+  --input-radius: var(--radius-xl);
+  --input-padding-x: var(--spacing-4);
+  --input-padding-y: var(--spacing-3);
+  --input-border-width: 1px;
+  --input-shadow: var(--shadow-sm);
+  --input-focus-shadow: var(--shadow-md);
+  
+  /* Badges */
+  --badge-radius: var(--radius-full);
+  --badge-padding-x: var(--spacing-3);
+  --badge-padding-y: var(--spacing-1);
+  
+  /* ===== Animation Overrides ===== */
+  --animation-reveal-distance: 60px;
+  --animation-reveal-blur: 16px;
+  --animation-hover-lift: -2px;
+  --animation-hover-scale: 1.02;
+  
+  /* ===== Effects ===== */
+  --blur-overlay: 12px;
+  --gradient-overlay-opacity: 0.6;
+  
+  /* ===== Collection Gradients ===== */
+  --gradient-1: linear-gradient(135deg, #059669 0%, #0891b2 50%, #0ea5e9 100%); /* emerald-cyan-sky */
+  --gradient-2: linear-gradient(135deg, #65a30d 0%, #059669 50%, #0891b2 100%); /* lime-emerald-cyan */
+  --gradient-3: linear-gradient(135deg, #0891b2 0%, #0ea5e9 50%, #3b82f6 100%); /* cyan-sky-blue */
+  --gradient-4: linear-gradient(135deg, #16a34a 0%, #059669 50%, #0d9488 100%); /* green-emerald-teal */
+  --gradient-5: linear-gradient(135deg, #0891b2 0%, #0d9488 50%, #059669 100%); /* cyan-teal-emerald */
+  --gradient-6: linear-gradient(135deg, #0ea5e9 0%, #0891b2 50%, #0d9488 100%); /* sky-cyan-teal */
+}
+
+/* ===== Theme-Specific Component Styles ===== */
+[data-theme="default"] {
+  /* Smooth transitions for everything */
+  * {
+    transition-timing-function: var(--ease-out);
+  }
+  
+  /* Button hover effects */
+  .button-link:hover,
+  .btn:hover {
+    transform: translateY(var(--animation-hover-lift)) scale(var(--animation-hover-scale));
+  }
+  
+  /* Card hover effects */
+  .product-card:hover,
+  .card:hover {
+    transform: scale(var(--card-hover-scale));
+    box-shadow: var(--card-hover-shadow);
+  }
+  
+  /* Subtle backdrop filters */
+  .backdrop-blur {
+    backdrop-filter: blur(var(--nav-blur));
+  }
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  [data-theme="default"] {
+    --hero-title-size: var(--font-size-6xl);
+    --section-title-size: var(--font-size-3xl);
+    --card-padding: var(--spacing-4);
+    --collection-card-padding: var(--spacing-6);
+  }
+}
+
+@media (min-width: 1280px) {
+  [data-theme="default"] {
+    --hero-title-size: var(--font-size-9xl);
+    --section-title-size: var(--font-size-6xl);
+  }
+}
+

@@ -16,7 +16,7 @@ function SubmitButton({
   selectedVariantId: string | undefined;
 }) {
   const buttonClasses =
-    'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white';
+    'relative flex w-full items-center justify-center rounded-full bg-primary text-primary-foreground p-4 tracking-wide';
   const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
 
   if (!availableForSale) {
@@ -57,7 +57,7 @@ function SubmitButton({
   );
 }
 
-export function AddToCart({ product }: { product: Product }) {
+export function AddToCart({ product, quantity = 1 }: { product: Product; quantity?: number }) {
   const { variants, availableForSale } = product;
   const { addCartItem } = useCart();
   const { state } = useProduct();
@@ -78,7 +78,10 @@ export function AddToCart({ product }: { product: Product }) {
   return (
     <form
       action={async () => {
-        addCartItem(finalVariant, product);
+        // Add the item multiple times based on quantity
+        for (let i = 0; i < quantity; i++) {
+          addCartItem(finalVariant, product);
+        }
         addItemAction();
       }}
     >

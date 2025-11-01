@@ -1,5 +1,5 @@
-import Grid from 'components/grid';
-import ProductGridItems from 'components/layout/product-grid-items';
+import { Reveal } from '@/components/animations';
+import ProductCard from 'components/product-card';
 import { defaultSort, sorting } from 'lib/constants';
 import { getProducts } from 'lib/shopify';
 
@@ -19,7 +19,8 @@ export default async function SearchPage(props: {
   const resultsText = products.length > 1 ? 'results' : 'result';
 
   return (
-    <>
+    <section className="section-wrapper section-bg-gray">
+      <div className="section-container">
       {searchValue ? (
         <p className="mb-4">
           {products.length === 0
@@ -29,10 +30,15 @@ export default async function SearchPage(props: {
         </p>
       ) : null}
       {products.length > 0 ? (
-        <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          <ProductGridItems products={products} />
-        </Grid>
+          <div className="section-grid section-grid-3">
+            {products.map((product, index) => (
+              <Reveal delay={0.1 * index} direction="up" key={product.id}>
+                <ProductCard product={product} />
+              </Reveal>
+            ))}
+          </div>
       ) : null}
-    </>
+      </div>
+    </section>
   );
 }

@@ -1,0 +1,283 @@
+/* =========================
+   Section Styles
+   =========================
+   
+   Standardized section patterns for consistent
+   layout and spacing across all page sections.
+   ========================= */
+
+@layer utilities {
+  /* ===== Section Wrapper ===== */
+  .section-wrapper {
+    @apply bg-neutral-50 dark:bg-neutral-900 relative;
+    padding-top: var(--section-spacing-y, var(--section-y));
+    padding-bottom: var(--section-spacing-y, var(--section-y));
+  }
+
+  .section-container {
+    @apply mx-auto max-w-7xl;
+    padding-inline: var(--section-x, var(--spacing-5));
+  }
+
+  /* ===== Section Header ===== */
+  .section-header {
+    @apply mb-14 md:mb-[70px];
+    text-align: var(--section-header-align, center);
+  }
+
+  .section-header.left {
+    @apply text-left;
+  }
+
+  .section-header.center {
+    @apply text-center;
+  }
+
+  .section-header.right {
+    @apply text-right;
+  }
+
+  /* ===== Section Eyebrow/Badge ===== */
+  .section-eyebrow {
+    @apply inline-block mb-3.5 md:mb-5;
+  }
+
+  /* ===== Section Title ===== */
+  .section-title {
+    @apply mb-3 font-bold text-neutral-900 dark:text-white;
+    font-size: var(--section-title-size, var(--font-size-5xl));
+    line-height: var(--leading-tight);
+  }
+
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: var(--font-size-3xl);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-title {
+      font-size: var(--font-size-5xl);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .section-title {
+      font-size: var(--section-title-size, var(--font-size-6xl));
+    }
+  }
+
+  .section-title-highlight {
+    @apply text-primary inline-block;
+  }
+
+  /* ===== Section Description ===== */
+  .section-description {
+    @apply mx-auto max-w-[738px] text-neutral-600 dark:text-neutral-400;
+    font-size: var(--font-size-base);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ===== Grid Layouts ===== */
+  .section-grid {
+    @apply grid;
+    gap: var(--grid-gap-lg, var(--spacing-7));
+  }
+
+  .section-grid-2 {
+    @apply grid-cols-1 md:grid-cols-2;
+  }
+
+  .section-grid-3 {
+    @apply grid-cols-1 md:grid-cols-2 xl:grid-cols-3;
+  }
+
+  .section-grid-4 {
+    @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  }
+
+  /* ===== Section Actions ===== */
+  .section-actions {
+    @apply mt-10 md:mt-14 flex justify-center;
+  }
+
+  .section-actions.left {
+    @apply justify-start;
+  }
+
+  .section-actions.right {
+    @apply justify-end;
+  }
+
+  /* ===== Feature Lists ===== */
+  .feature-list {
+    @apply space-y-5;
+  }
+
+  .feature-item {
+    @apply flex items-center gap-3;
+  }
+
+  .feature-icon {
+    @apply flex items-center justify-center shrink-0;
+    width: var(--spacing-6);
+    height: var(--spacing-6);
+  }
+
+  .feature-icon-sm {
+    width: var(--spacing-5);
+    height: var(--spacing-5);
+  }
+
+  .feature-icon-lg {
+    width: var(--spacing-9);
+    height: var(--spacing-9);
+  }
+
+  .feature-text {
+    @apply text-neutral-700 dark:text-neutral-200;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* ===== Content Blocks ===== */
+  .content-block {
+    @apply space-y-5;
+  }
+
+  .content-block-title {
+    @apply font-bold text-neutral-900 dark:text-white;
+    font-size: var(--font-size-2xl);
+    line-height: var(--leading-tight);
+  }
+
+  @media (min-width: 768px) {
+    .content-block-title {
+      font-size: var(--font-size-3xl);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .content-block-title {
+      font-size: var(--font-size-4xl);
+    }
+  }
+
+  .content-block-text {
+    @apply text-neutral-600 dark:text-neutral-400;
+    font-size: var(--font-size-base);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ===== Two Column Layout ===== */
+  .section-two-column {
+    @apply flex flex-col lg:flex-row items-start;
+    gap: var(--spacing-24);
+  }
+
+  .section-two-column-sticky {
+    @apply w-full lg:flex-1 lg:sticky lg:top-1/2 lg:-translate-y-1/2;
+  }
+
+  .section-two-column-content {
+    @apply w-full lg:flex-1;
+  }
+
+  /* ===== Hero Patterns ===== */
+  .section-hero {
+    @apply relative flex items-center overflow-hidden;
+    min-height: 100svh;
+  }
+
+  .section-hero-content {
+    @apply relative z-10 mx-auto max-w-7xl w-full;
+    padding-inline: var(--section-x, var(--spacing-5));
+    padding-block: var(--spacing-20, var(--spacing-32));
+  }
+
+  /* ===== Background Variants ===== */
+  .section-bg-white {
+    @apply bg-white dark:bg-black;
+  }
+
+  .section-bg-gray {
+    @apply bg-neutral-50 dark:bg-neutral-900;
+  }
+
+  .section-bg-primary {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .section-bg-transparent {
+    @apply bg-transparent;
+  }
+
+  /* ===== Spacing Variants ===== */
+  .section-spacing-sm {
+    padding-block: var(--spacing-12);
+  }
+
+  @media (min-width: 640px) {
+    .section-spacing-sm {
+      padding-block: var(--spacing-16);
+    }
+  }
+
+  .section-spacing-md {
+    padding-block: var(--section-spacing-mobile);
+  }
+
+  @media (min-width: 640px) {
+    .section-spacing-md {
+      padding-block: var(--section-spacing-tablet);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-spacing-md {
+      padding-block: var(--section-spacing-desktop);
+    }
+  }
+
+  .section-spacing-lg {
+    padding-block: var(--spacing-20);
+  }
+
+  @media (min-width: 640px) {
+    .section-spacing-lg {
+      padding-block: var(--spacing-32);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-spacing-lg {
+      padding-block: var(--spacing-40);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .section-spacing-lg {
+      padding-block: var(--spacing-48);
+    }
+  }
+
+  /* ===== Utility Classes ===== */
+  .max-w-section {
+    max-width: var(--container-max);
+  }
+
+  .section-divider {
+    @apply border-t border-neutral-200 dark:border-neutral-800;
+  }
+
+  .section-gradient-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent;
+    opacity: var(--gradient-overlay-opacity, 0.6);
+  }
+
+  .section-blur-overlay {
+    @apply absolute inset-0;
+    backdrop-filter: blur(var(--blur-overlay, 0));
+  }
+}
+

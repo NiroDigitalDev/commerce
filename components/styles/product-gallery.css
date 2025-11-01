@@ -1,0 +1,99 @@
+/* =========================
+   Product Gallery Styles
+   =========================
+   
+   Gallery component styling with navigation and thumbnails.
+   Includes hover effects and smooth transitions.
+   ========================= */
+
+@layer utilities {
+  /* ===== Gallery Container ===== */
+  .product-gallery {
+    @apply relative w-full;
+  }
+
+  /* ===== Main Image Display ===== */
+  .product-gallery-main {
+    @apply relative w-full overflow-hidden;
+    aspect-ratio: 1 / 1;
+  }
+
+  .product-gallery-image {
+    @apply h-full w-full object-contain;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  /* ===== Navigation Controls ===== */
+  .product-gallery-nav {
+    @apply absolute flex w-full justify-center;
+    bottom: 15%;
+  }
+
+  .product-gallery-nav-inner {
+    @apply mx-auto flex items-center rounded-full border border-white bg-neutral-50/80 text-neutral-500 backdrop-blur-sm dark:border-black dark:bg-neutral-900/80;
+    height: var(--spacing-11);
+  }
+
+  .product-gallery-nav-button {
+    @apply flex h-full items-center justify-center transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white;
+    padding-inline: var(--spacing-6);
+  }
+
+  .product-gallery-nav-button:focus-visible {
+    @apply outline-none ring-2 ring-neutral-400 ring-offset-2;
+  }
+
+  .product-gallery-nav-divider {
+    @apply bg-neutral-500;
+    width: 1px;
+    height: var(--spacing-6);
+    margin-inline: var(--spacing-1);
+  }
+
+  .product-gallery-nav-icon {
+    height: var(--spacing-5);
+    width: var(--spacing-5);
+  }
+
+  /* ===== Thumbnails ===== */
+  .product-gallery-thumbnails {
+    @apply flex flex-wrap items-center justify-center overflow-auto;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-12);
+    margin-bottom: var(--spacing-12);
+    padding-top: var(--spacing-1);
+  }
+
+  @media (min-width: 1024px) {
+    .product-gallery-thumbnails {
+      margin-bottom: 0;
+    }
+  }
+
+  .product-gallery-thumbnail {
+    height: var(--spacing-20);
+    width: var(--spacing-20);
+  }
+
+  .product-gallery-thumbnail-button {
+    @apply h-full w-full;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .product-gallery-thumbnail-button:hover {
+    transform: scale(1.05);
+  }
+
+  .product-gallery-thumbnail-button:focus-visible {
+    @apply outline-none ring-2 ring-neutral-400 ring-offset-2;
+  }
+
+  /* Active thumbnail styling */
+  .product-gallery-thumbnail-active {
+    @apply ring-2 ring-neutral-900 dark:ring-neutral-100;
+    ring-offset: 2px;
+  }
+}
+

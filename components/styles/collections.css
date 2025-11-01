@@ -1,0 +1,247 @@
+/* =========================
+   Collections Section Styles
+   =========================
+   
+   Bento grid layouts and gradient definitions
+   for collection cards. All gradients are themeable.
+   ========================= */
+
+@layer utilities {
+  /* ===== Bento Grid Sizes ===== */
+  /* Desktop (4 columns): Hero (2x2), Tall (1x2), Small (1x1), Tall (1x2), Wide (2x1), Small (1x1) */
+
+  .collection-grid {
+    @apply grid grid-cols-3 md:grid-cols-4;
+    gap: var(--grid-gap-sm, var(--spacing-3));
+    grid-auto-rows: 190px;
+  }
+
+  @media (min-width: 768px) {
+    .collection-grid {
+      gap: var(--grid-gap-md, var(--spacing-4));
+      grid-auto-rows: 200px;
+    }
+  }
+
+  /* Grid item sizes - these should be on the Reveal wrapper */
+  .collection-card-hero {
+    @apply col-span-2 row-span-2;
+  }
+
+  .collection-card-tall {
+    @apply col-span-1 row-span-2;
+  }
+
+  .collection-card-small {
+    @apply col-span-1 row-span-1;
+  }
+
+  .collection-card-wide {
+    @apply col-span-2 row-span-1;
+  }
+
+  @media (min-width: 768px) {
+    .collection-card-wide {
+      @apply col-span-2;
+    }
+  }
+
+  /* ===== Collection Card Base ===== */
+  .collection-card {
+    @apply relative overflow-hidden flex flex-col justify-between w-full h-full;
+    border-radius: var(--collection-card-radius, var(--card-radius));
+    padding: var(--spacing-6);
+    transition: all var(--duration-slow) var(--ease-out);
+  }
+
+  @media (min-width: 768px) {
+    .collection-card {
+      padding: var(--spacing-8);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .collection-card {
+      padding: var(--spacing-10);
+    }
+  }
+
+  .collection-card:hover {
+    transform: scale(var(--collection-hover-scale, 1.02));
+    box-shadow: var(--shadow-2xl);
+  }
+
+  /* ===== Collection Card Elements ===== */
+  .collection-card-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60;
+    transition: opacity var(--duration-slow) var(--ease-out);
+  }
+
+  .collection-card:hover .collection-card-overlay {
+    @apply opacity-40;
+  }
+
+  .collection-card-blur {
+    @apply absolute -top-20 -right-20 w-60 h-60 bg-white/10 rounded-full blur-3xl;
+    transition: all var(--duration-slower) var(--ease-out);
+  }
+
+  .collection-card:hover .collection-card-blur {
+    @apply bg-white/20;
+  }
+
+  .collection-card-content {
+    @apply relative z-10 flex flex-col justify-between h-full;
+  }
+
+  .collection-card-badge {
+    @apply mb-2 inline-block rounded-full bg-white/20 backdrop-blur-sm;
+    padding-inline: var(--spacing-3);
+    padding-block: var(--spacing-1);
+  }
+
+  .collection-card-badge-text {
+    @apply text-white uppercase tracking-wider;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .collection-card-title {
+    @apply font-bold text-white mb-3;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .collection-card:hover .collection-card-title {
+    @apply translate-x-1;
+  }
+
+  .collection-card-title-hero {
+    font-size: var(--font-size-3xl);
+  }
+
+  @media (min-width: 768px) {
+    .collection-card-title-hero {
+      font-size: var(--font-size-4xl);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .collection-card-title-hero {
+      font-size: var(--font-size-5xl);
+    }
+  }
+
+  .collection-card-title-regular {
+    font-size: var(--font-size-xl);
+  }
+
+  @media (min-width: 768px) {
+    .collection-card-title-regular {
+      font-size: var(--font-size-2xl);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .collection-card-title-regular {
+      font-size: var(--font-size-3xl);
+    }
+  }
+
+  .collection-card-description {
+    @apply text-white/90 leading-relaxed;
+  }
+
+  .collection-card-description-hero {
+    font-size: var(--font-size-base);
+    @apply line-clamp-3;
+  }
+
+  @media (min-width: 768px) {
+    .collection-card-description-hero {
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  .collection-card-description-regular {
+    font-size: var(--font-size-sm);
+    @apply line-clamp-2;
+  }
+
+  @media (min-width: 768px) {
+    .collection-card-description-regular {
+      font-size: var(--font-size-base);
+    }
+  }
+
+  .collection-card-action {
+    @apply mt-6 inline-flex items-center gap-2 text-white font-semibold;
+    transition: gap var(--duration-normal) var(--ease-out);
+  }
+
+  .collection-card:hover .collection-card-action {
+    gap: var(--spacing-3);
+  }
+
+  .collection-card-action-text {
+    font-size: var(--font-size-sm);
+  }
+
+  @media (min-width: 768px) {
+    .collection-card-action-text {
+      font-size: var(--font-size-base);
+    }
+  }
+
+  .collection-card-arrow {
+    @apply w-5 h-5;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .collection-card:hover .collection-card-arrow {
+    @apply translate-x-1;
+  }
+
+  /* ===== Gradient Backgrounds ===== */
+  /* Default theme - vibrant gradients */
+  .collection-gradient-1 {
+    background: var(
+      --gradient-1,
+      linear-gradient(135deg, #059669 0%, #0891b2 50%, #0ea5e9 100%)
+    );
+  }
+
+  .collection-gradient-2 {
+    background: var(
+      --gradient-2,
+      linear-gradient(135deg, #65a30d 0%, #059669 50%, #0891b2 100%)
+    );
+  }
+
+  .collection-gradient-3 {
+    background: var(
+      --gradient-3,
+      linear-gradient(135deg, #0891b2 0%, #0ea5e9 50%, #3b82f6 100%)
+    );
+  }
+
+  .collection-gradient-4 {
+    background: var(
+      --gradient-4,
+      linear-gradient(135deg, #16a34a 0%, #059669 50%, #0d9488 100%)
+    );
+  }
+
+  .collection-gradient-5 {
+    background: var(
+      --gradient-5,
+      linear-gradient(135deg, #0891b2 0%, #0d9488 50%, #059669 100%)
+    );
+  }
+
+  .collection-gradient-6 {
+    background: var(
+      --gradient-6,
+      linear-gradient(135deg, #0ea5e9 0%, #0891b2 50%, #0d9488 100%)
+    );
+  }
+}

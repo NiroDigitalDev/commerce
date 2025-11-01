@@ -1,0 +1,243 @@
+/* =========================
+   Brutalist Theme
+   =========================
+   
+   Bold, raw, unapologetic design with sharp edges,
+   high contrast, heavy borders, and minimal animations.
+   Demonstrates the flexibility of the design system.
+   ========================= */
+
+[data-theme="brutalist"] {
+  /* ===== Component Overrides ===== */
+  /* Buttons */
+  --button-radius: 0;
+  --button-shadow: none;
+  --button-hover-shadow: none;
+  --button-border-width: 3px;
+  --button-transition: none;
+  
+  /* Cards */
+  --card-radius: 0;
+  --card-padding: var(--spacing-8);
+  --card-shadow: none;
+  --card-hover-shadow: none;
+  --card-hover-scale: 1;
+  --card-border-width: 3px;
+  --card-transition: none;
+  
+  /* Sections */
+  --section-header-align: left;
+  --section-title-size: var(--font-size-6xl);
+  --section-spacing-y: var(--section-y);
+  
+  /* Hero */
+  --hero-title-size: var(--font-size-9xl);
+  --hero-parallax-intensity: 0;
+  --hero-fade-start: 100%;
+  --hero-fade-end: 100%;
+  
+  /* Product Card */
+  --product-card-radius: 0;
+  --product-card-image-radius: 0;
+  --product-card-hover-scale: 1;
+  --product-card-image-hover-scale: 1;
+  --product-card-border-width: 3px;
+  
+  /* Collections Grid */
+  --collection-card-radius: 0;
+  --collection-card-padding: var(--spacing-10);
+  --collection-hover-scale: 1;
+  --collection-border-width: 4px;
+  
+  /* Navigation */
+  --nav-height: 5rem;
+  --nav-blur: 0;
+  --nav-shadow: none;
+  --nav-border-width: 3px;
+  
+  /* Footer */
+  --footer-padding-y: var(--spacing-32);
+  --footer-border-width: 4px;
+  
+  /* Inputs */
+  --input-radius: 0;
+  --input-padding-x: var(--spacing-4);
+  --input-padding-y: var(--spacing-3);
+  --input-border-width: 2px;
+  --input-shadow: none;
+  --input-focus-shadow: none;
+  
+  /* Badges */
+  --badge-radius: 0;
+  --badge-padding-x: var(--spacing-4);
+  --badge-padding-y: var(--spacing-2);
+  --badge-border-width: 2px;
+  
+  /* ===== Animation Overrides (Minimal/None) ===== */
+  --animation-reveal-distance: 0;
+  --animation-reveal-blur: 0;
+  --animation-hover-lift: 0;
+  --animation-hover-scale: 1;
+  --duration-fast: 0ms;
+  --duration-normal: 0ms;
+  --duration-slow: 0ms;
+  
+  /* ===== Effects ===== */
+  --blur-overlay: 0;
+  --gradient-overlay-opacity: 0;
+  
+  /* ===== Brutalist Color Blocks (Solid Colors Instead of Gradients) ===== */
+  --gradient-1: #000000; /* Black */
+  --gradient-2: #FFFFFF; /* White */
+  --gradient-3: #FF0000; /* Red */
+  --gradient-4: #0000FF; /* Blue */
+  --gradient-5: #FFFF00; /* Yellow */
+  --gradient-6: #00FF00; /* Green */
+  
+  /* Typography adjustments */
+  --font-weight-normal: var(--font-weight-bold);
+  --tracking-normal: var(--tracking-wider);
+}
+
+/* ===== Theme-Specific Component Styles ===== */
+[data-theme="brutalist"] {
+  /* No transitions */
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  /* Heavy borders everywhere */
+  .button-link,
+  .btn {
+    border-width: var(--button-border-width);
+    border-color: currentColor;
+    border-style: solid;
+    box-shadow: 4px 4px 0 0 currentColor;
+  }
+  
+  .button-link:hover,
+  .btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 currentColor;
+  }
+  
+  /* Remove all button pseudo-elements */
+  .button-link::before,
+  .btn::before,
+  .button-link::after,
+  .btn::after {
+    display: none !important;
+  }
+  
+  /* Card borders */
+  .product-card,
+  .card {
+    border: var(--card-border-width) solid currentColor;
+    box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-card:hover,
+  .card:hover {
+    transform: translate(4px, 4px);
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Input borders */
+  input,
+  textarea,
+  select {
+    border-width: var(--input-border-width);
+    border-color: currentColor;
+    box-shadow: none;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+  }
+  
+  /* Remove backdrop blur */
+  .backdrop-blur {
+    backdrop-filter: none;
+  }
+  
+  /* Bold, chunky typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+  
+  /* Collection cards with solid colors */
+  [class*="gradient"] {
+    background: var(--gradient-1);
+    color: white;
+  }
+  
+  /* High contrast focus states */
+  a:focus,
+  button:focus {
+    outline: 4px solid currentColor;
+    outline-offset: 4px;
+  }
+  
+  /* Sharp, geometric patterns */
+  .rounded-full,
+  .rounded-lg,
+  .rounded-xl,
+  .rounded-2xl,
+  .rounded-3xl {
+    border-radius: 0 !important;
+  }
+  
+  /* Remove all image filters and effects */
+  img {
+    filter: none !important;
+  }
+  
+  /* Grid gaps - more spacious */
+  .grid {
+    gap: var(--spacing-8);
+  }
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  [data-theme="brutalist"] {
+    --hero-title-size: var(--font-size-7xl);
+    --section-title-size: var(--font-size-4xl);
+    --button-border-width: 2px;
+    --card-border-width: 2px;
+  }
+}
+
+@media (min-width: 1280px) {
+  [data-theme="brutalist"] {
+    --hero-title-size: clamp(6rem, 10vw, 10rem);
+    --section-title-size: var(--font-size-7xl);
+  }
+}
+
+/* ===== Brutalist-Specific Utilities ===== */
+[data-theme="brutalist"] .brutalist-shadow {
+  box-shadow: 8px 8px 0 0 currentColor;
+}
+
+[data-theme="brutalist"] .brutalist-shadow:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0 0 currentColor;
+}
+
+[data-theme="brutalist"] .brutalist-border {
+  border: 3px solid currentColor;
+}
+
+[data-theme="brutalist"] .brutalist-text {
+  font-weight: var(--font-weight-black);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+

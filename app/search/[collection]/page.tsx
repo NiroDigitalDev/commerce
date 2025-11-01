@@ -1,9 +1,9 @@
+import { Reveal } from '@/components/animations';
+import ProductCard from 'components/product-card';
 import { getCollection, getCollectionProducts } from 'lib/shopify';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import Grid from 'components/grid';
-import ProductGridItems from 'components/layout/product-grid-items';
 import { defaultSort, sorting } from 'lib/constants';
 
 export async function generateMetadata(props: {
@@ -32,14 +32,20 @@ export default async function CategoryPage(props: {
   const products = await getCollectionProducts({ collection: params.collection, sortKey, reverse });
 
   return (
-    <section>
+    <section className="section-wrapper section-bg-gray">
+      <div className="section-container">
       {products.length === 0 ? (
         <p className="py-3 text-lg">{`No products found in this collection`}</p>
       ) : (
-        <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          <ProductGridItems products={products} />
-        </Grid>
+          <div className="section-grid section-grid-3">
+            {products.map((product, index) => (
+              <Reveal delay={0.1 * index} direction="up" key={product.id}>
+                <ProductCard product={product} />
+              </Reveal>
+            ))}
+          </div>
       )}
+      </div>
     </section>
   );
 }

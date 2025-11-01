@@ -1,0 +1,118 @@
+/* =========================
+   Visual Effects Styles
+   =========================
+   
+   Background transitions, blur effects, and
+   other visual effects. All configurable via theme.
+   ========================= */
+
+@layer utilities {
+  /* ===== Background Transition ===== */
+  .background-transition {
+    @apply fixed inset-0;
+    z-index: -50;
+    transition: all var(--duration-slow) var(--ease-out);
+  }
+  
+  /* ===== Color Definitions (Theme-configurable) ===== */
+  :root {
+    /* Background transition colors */
+    --bg-color-neutral: rgb(250, 250, 249); /* neutral-50 */
+    --bg-color-matcha: rgb(197, 213, 197);  /* Matcha green */
+    --bg-color-primary-light: rgb(33, 33, 33);  /* Dark gray */
+    --bg-color-primary-dark: rgb(235, 235, 235); /* Light gray */
+  }
+  
+  .dark {
+    --bg-color-neutral: rgb(23, 23, 23); /* neutral-900 */
+  }
+  
+  /* ===== Blur Effects ===== */
+  .backdrop-blur-light {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  .backdrop-blur-medium {
+    backdrop-filter: blur(var(--blur-overlay, 12px));
+    -webkit-backdrop-filter: blur(var(--blur-overlay, 12px));
+  }
+  
+  .backdrop-blur-heavy {
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+  
+  /* ===== Gradient Overlays ===== */
+  .gradient-overlay-light {
+    @apply absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent;
+  }
+  
+  .gradient-overlay-medium {
+    @apply absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent;
+  }
+  
+  .gradient-overlay-dark {
+    @apply absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent;
+  }
+  
+  /* ===== Decorative Blurs ===== */
+  .decorative-blur {
+    @apply absolute rounded-full blur-3xl pointer-events-none;
+    width: var(--spacing-60);
+    height: var(--spacing-60);
+  }
+  
+  .decorative-blur-sm {
+    @apply absolute rounded-full blur-2xl pointer-events-none;
+    width: var(--spacing-40);
+    height: var(--spacing-40);
+  }
+  
+  .decorative-blur-lg {
+    @apply absolute rounded-full blur-[100px] pointer-events-none;
+    width: var(--spacing-80);
+    height: var(--spacing-80);
+  }
+  
+  /* ===== Vignette Effect ===== */
+  .vignette {
+    @apply absolute inset-0;
+    background-image: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  }
+  
+  .vignette-light {
+    @apply absolute inset-0;
+    background-image: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 60%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  }
+  
+  /* ===== Theme Overrides ===== */
+  [data-theme="brutalist"] .backdrop-blur-light,
+  [data-theme="brutalist"] .backdrop-blur-medium,
+  [data-theme="brutalist"] .backdrop-blur-heavy {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  [data-theme="brutalist"] .decorative-blur,
+  [data-theme="brutalist"] .decorative-blur-sm,
+  [data-theme="brutalist"] .decorative-blur-lg {
+    display: none !important;
+  }
+  
+  [data-theme="brutalist"] .vignette,
+  [data-theme="brutalist"] .vignette-light {
+    display: none !important;
+  }
+}
+
