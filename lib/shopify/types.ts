@@ -112,6 +112,7 @@ export type ShopifyCollection = {
   title: string;
   description: string;
   seo: SEO;
+  image?: Image;
   updatedAt: string;
 };
 

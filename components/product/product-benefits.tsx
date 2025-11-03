@@ -170,7 +170,7 @@ export function ProductBenefits() {
             <Reveal delay={0.9} direction="up">
               <div className="product-benefits-cta">
                 <ButtonLink
-                  href="/search"
+                  href="/shop"
                   variant="default"
                   className="product-benefits-button"
                 >

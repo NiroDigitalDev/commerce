@@ -121,7 +121,7 @@ const CollectionsSection = ({ collections }: CollectionsSectionProps) => {
         <Reveal delay={0.8}>
           <div className="section-actions">
             <ButtonLink
-              href="/search"
+              href="/shop"
               size="lg"
               className="mx-auto w-full md:mx-0 md:w-auto"
               aria-label="View all collections"

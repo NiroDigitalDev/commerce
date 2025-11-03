@@ -3,7 +3,7 @@ import { Navbar } from 'components/layout/navbar';
 import Footer from 'components/layout/footer';
 import { WelcomeToast } from 'components/welcome-toast';
 import NewsletterSection from 'components/newsletter-section';
-import { getCart } from 'lib/shopify';
+import { getCart, getCollections } from 'lib/shopify';
 import { Bebas_Neue } from 'next/font/google';
 import { ReactNode } from 'react';
 import { Toaster } from 'sonner';
@@ -35,8 +35,9 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  // Fetch cart data for the cart context
+  // Fetch cart data for the cart context and collections for footer
   const cart = getCart();
+  const collections = await getCollections();
 
   return (
     <html lang="en" className={bebasNeue.className}>
@@ -47,7 +48,7 @@ export default async function RootLayout({
             {children}
           </main>
           <NewsletterSection />
-          <Footer />
+          <Footer collections={collections} />
           <Toaster closeButton />
           <WelcomeToast />
         </CartProvider>

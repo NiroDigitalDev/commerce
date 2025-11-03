@@ -34,7 +34,7 @@ const ProductsSection = ({ products }: ProductsSectionProps) => {
         <Reveal delay={1.2}>
           <div className="section-actions">
             <ButtonLink
-              href="/search"
+              href="/shop"
               size="lg"
               className="mx-auto w-full md:mx-0 md:w-auto"
               aria-label="View all matcha products"

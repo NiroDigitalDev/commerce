@@ -46,7 +46,7 @@ const AboutStore = () => {
                 <Reveal delay={0.5}>
                   <div>
                     <ButtonLink
-                      href="/search"
+                      href="/shop"
                       size="lg"
                       className="w-full md:w-auto bg-white text-primary hover:bg-white/90 border-white"
                     >

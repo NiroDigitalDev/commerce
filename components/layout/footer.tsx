@@ -7,16 +7,23 @@ import LogoSquare from "components/logo-square";
 import Link from "next/link";
 import FooterLeftGradient from "./footer-left-gradient";
 import FooterRightGradient from "./footer-right-gradient";
+import { Collection } from "lib/shopify/types";
 
 const { COMPANY_NAME, SITE_NAME } = process.env;
 
 interface FooterProps {
   className?: string;
+  collections?: Collection[];
 }
 
-const Footer = ({ className }: FooterProps) => {
+const Footer = ({ className, collections = [] }: FooterProps) => {
   const currentYear = new Date().getFullYear();
   const copyrightName = COMPANY_NAME || SITE_NAME || "";
+  
+  // Filter out "All" collection and hidden collections
+  const displayCollections = collections.filter(
+    (collection) => collection.handle !== "" && !collection.handle.startsWith("hidden")
+  );
 
   return (
     <footer className={clsx("bg-black relative overflow-hidden", className)}>
@@ -129,7 +136,38 @@ const Footer = ({ className }: FooterProps) => {
             <Reveal
               delay={0.2}
               direction="up"
-              className="col-span-12 md:col-span-4"
+              className="col-span-12 md:col-span-3"
+            >
+              <div>
+                <div className="space-y-8">
+                  <p className="text-white font-semibold text-base">Collections</p>
+                  <ul className="space-y-3 sm:space-y-5">
+                    <li>
+                      <AnimatedLink
+                        href="/shop"
+                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                      >
+                        All Products
+                      </AnimatedLink>
+                    </li>
+                    {displayCollections.map((collection) => (
+                      <li key={collection.handle}>
+                        <AnimatedLink
+                          href={collection.path}
+                          className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                        >
+                          {collection.title}
+                        </AnimatedLink>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal
+              delay={0.25}
+              direction="up"
+              className="col-span-12 md:col-span-3"
             >
               <div>
                 <div className="space-y-8">
@@ -166,7 +204,7 @@ const Footer = ({ className }: FooterProps) => {
             <Reveal
               delay={0.3}
               direction="up"
-              className="col-span-12 md:col-span-4"
+              className="col-span-12 md:col-span-3"
             >
               <div>
                 <div className="space-y-8">
@@ -193,9 +231,9 @@ const Footer = ({ className }: FooterProps) => {
               </div>
             </Reveal>
             <Reveal
-              delay={0.4}
+              delay={0.35}
               direction="up"
-              className="col-span-12 md:col-span-4"
+              className="col-span-12 md:col-span-3"
             >
               <div>
                 <div className="space-y-8">
@@ -257,7 +295,7 @@ const Footer = ({ className }: FooterProps) => {
             </Reveal>
           </div>
         </div>
-        <Reveal delay={0.5} direction="up">
+        <Reveal delay={0.4} direction="up">
           <div className="relative pt-[26px] pb-[100px] text-center border-t border-neutral-800">
             <p className="text-neutral-400 font-normal text-sm">
               Copyright &copy; {currentYear} {copyrightName}

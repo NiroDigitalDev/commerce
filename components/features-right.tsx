@@ -34,7 +34,7 @@ const FeaturesRight = () => {
               <Reveal delay={0.5}>
                 <div>
                   <ButtonLink
-                    href="/search"
+                    href="/shop"
                     size="lg"
                     className="w-[85%] md:w-auto mx-auto"
                   >

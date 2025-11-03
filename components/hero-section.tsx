@@ -75,14 +75,14 @@ const HeroSection = () => {
           <Reveal delay={0.4}>
             <div className="hero-buttons">
               <ButtonLink
-                href="/search"
+                href="/shop"
                 variant="primary"
                 className="hero-button"
               >
                 Shop Matcha
               </ButtonLink>
               <ButtonLink
-                href="/search"
+                href="/shop"
                 variant="primary"
                 className="hero-button"
               >

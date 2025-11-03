@@ -42,7 +42,7 @@ const ServicesV2 = () => {
                 <h5 className="text-white mb-6 text-lg md:text-xl font-semibold">
                   Develop a fully functional website that includes engaging content and visuals.
                 </h5>
-                <ButtonLink href="/search" variant="accent" size="lg">
+                <ButtonLink href="/shop" variant="accent" size="lg">
                   Get started
                 </ButtonLink>
               </div>

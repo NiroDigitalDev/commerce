@@ -1,13 +1,13 @@
-import Footer from 'components/layout/footer';
-
-export default function PoliciesLayout({ children }: { children: React.ReactNode }) {
+export default function PoliciesLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <div className="w-full">
-        <div className="mx-8 max-w-4xl py-20 sm:mx-auto">{children}</div>
+        <div className="mx-8 max-w-4xl py-4 sm:mx-auto">{children}</div>
       </div>
-      <Footer />
     </>
   );
 }
-
