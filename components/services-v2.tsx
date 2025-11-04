@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { Reveal } from '@/components/animations';
 import ButtonLink from 'components/button-link';
+import Image from 'next/image';
 import aboutBgImage from '../assets/hin-bong-yeung-jF946mh5QrA-unsplash.jpg';
 
 const ServicesV2 = () => {
@@ -37,20 +37,20 @@ const ServicesV2 = () => {
                 }} 
               />
             </div>
-            <div className="w-full py-8 px-6 md:px-11 grid max-lg:grid-cols-1 grid-cols-2 max-sm:gap-8 gap-5 relative z-10">
-              <div className="max-w-[500px]">
+            <div className="w-full py-8 px-6 md:px-11 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-5 relative z-10">
+              <div className="max-w-[500px] mx-auto lg:mx-0 text-center lg:text-left">
                 <h5 className="text-white mb-6 text-lg md:text-xl font-semibold">
                   Develop a fully functional website that includes engaging content and visuals.
                 </h5>
-                <ButtonLink href="/shop" variant="accent" size="lg">
+                <ButtonLink href="/shop" variant="accent" size="lg" className="w-full md:w-auto">
                   Get started
                 </ButtonLink>
               </div>
               <div>
-                <ul className="space-y-3">
+                <ul className="space-y-3 md:space-y-4">
                   {features.map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <div className="flex items-center justify-center shrink-0">
+                    <li key={index} className="flex items-start gap-3">
+                      <div className="flex items-center justify-center shrink-0 mt-0.5">
                         <svg
                           width={20}
                           height={20}
@@ -75,7 +75,7 @@ const ServicesV2 = () => {
                           />
                         </svg>
                       </div>
-                      <span className="text-white font-medium">{feature}</span>
+                      <span className="text-white font-medium text-sm md:text-base">{feature}</span>
                     </li>
                   ))}
                 </ul>

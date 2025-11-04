@@ -34,25 +34,26 @@ const Footer = ({ className, collections = [] }: FooterProps) => {
       <FooterLeftGradient />
 
       <div className="mx-auto max-w-7xl px-5">
-        <div className="grid grid-cols-12 justify-between gap-x-0 gap-y-16 pt-16 pb-12 xl:pt-[90px]">
+        <div className="grid grid-cols-12 justify-between gap-x-6 gap-y-12 md:gap-y-16 pt-12 md:pt-16 pb-12 xl:pt-[90px]">
+          {/* Logo and Social - Full width on mobile */}
           <Reveal
             delay={0.1}
             direction="up"
             className="col-span-12 xl:col-span-4"
           >
             <div>
-              <div className="max-w-[306px]">
-                <Link href="/" className="flex items-center gap-2">
+              <div className="max-w-[306px] mx-auto md:mx-0">
+                <Link href="/" className="flex items-center gap-2 justify-center md:justify-start">
                   <LogoSquare />
-                  <span className="ml-2 text-sm font-medium uppercase text-white md:hidden lg:block">
+                  <span className="ml-2 text-sm font-medium uppercase text-white">
                     {SITE_NAME}
                   </span>
                 </Link>
-                <p className="text-neutral-400 mt-4 mb-7 font-normal text-sm">
+                <p className="text-neutral-400 mt-4 mb-7 font-normal text-sm text-center md:text-left">
                   Turpis tortor nunc sed amet et faucibus vitae morbi congue sed
                   id mauris.
                 </p>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 justify-center md:justify-start">
                   <Link
                     target="_blank"
                     href="https://www.facebook.com"
@@ -132,29 +133,31 @@ const Footer = ({ className, collections = [] }: FooterProps) => {
               </div>
             </div>
           </Reveal>
-          <div className="col-span-12 grid grid-cols-12 gap-x-0 gap-y-8 xl:col-span-8">
+
+          {/* Navigation Links - 2 columns on mobile, 4 columns on desktop */}
+          <div className="col-span-12 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 md:gap-y-8 xl:col-span-8">
             <Reveal
               delay={0.2}
               direction="up"
-              className="col-span-12 md:col-span-3"
+              className="col-span-1"
             >
               <div>
-                <div className="space-y-8">
+                <div className="space-y-5 md:space-y-8">
                   <p className="text-white font-semibold text-base">Collections</p>
-                  <ul className="space-y-3 sm:space-y-5">
+                  <ul className="space-y-3 sm:space-y-4">
                     <li>
                       <AnimatedLink
                         href="/shop"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white text-sm"
                       >
                         All Products
                       </AnimatedLink>
                     </li>
-                    {displayCollections.map((collection) => (
+                    {displayCollections.slice(0, 4).map((collection) => (
                       <li key={collection.handle}>
                         <AnimatedLink
                           href={collection.path}
-                          className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                          className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white text-sm"
                         >
                           {collection.title}
                         </AnimatedLink>
@@ -167,16 +170,16 @@ const Footer = ({ className, collections = [] }: FooterProps) => {
             <Reveal
               delay={0.25}
               direction="up"
-              className="col-span-12 md:col-span-3"
+              className="col-span-1"
             >
               <div>
-                <div className="space-y-8">
+                <div className="space-y-5 md:space-y-8">
                   <p className="text-white font-semibold text-base">Company</p>
-                  <ul className="space-y-3 sm:space-y-5">
+                  <ul className="space-y-3 sm:space-y-4">
                     <li>
                       <AnimatedLink
                         href="/about"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white text-sm"
                       >
                         About Us
                       </AnimatedLink>
@@ -184,7 +187,7 @@ const Footer = ({ className, collections = [] }: FooterProps) => {
                     <li>
                       <AnimatedLink
                         href="/career"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white text-sm"
                       >
                         Career
                       </AnimatedLink>
@@ -192,7 +195,7 @@ const Footer = ({ className, collections = [] }: FooterProps) => {
                     <li>
                       <AnimatedLink
                         href="/contact"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white text-sm"
                       >
                         Contact Us
                       </AnimatedLink>
@@ -204,16 +207,16 @@ const Footer = ({ className, collections = [] }: FooterProps) => {
             <Reveal
               delay={0.3}
               direction="up"
-              className="col-span-12 md:col-span-3"
+              className="col-span-1"
             >
               <div>
-                <div className="space-y-8">
+                <div className="space-y-5 md:space-y-8">
                   <p className="text-white font-semibold text-base">Support</p>
-                  <ul className="space-y-3 sm:space-y-5">
+                  <ul className="space-y-3 sm:space-y-4">
                     <li>
                       <AnimatedLink
                         href="/faq"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white text-sm"
                       >
                         FAQ
                       </AnimatedLink>
@@ -221,7 +224,7 @@ const Footer = ({ className, collections = [] }: FooterProps) => {
                     <li>
                       <AnimatedLink
                         href="/support"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white text-sm"
                       >
                         Support
                       </AnimatedLink>
@@ -233,60 +236,44 @@ const Footer = ({ className, collections = [] }: FooterProps) => {
             <Reveal
               delay={0.35}
               direction="up"
-              className="col-span-12 md:col-span-3"
+              className="col-span-1"
             >
               <div>
-                <div className="space-y-8">
+                <div className="space-y-5 md:space-y-8">
                   <p className="text-white font-semibold text-base">
-                    Legal Policies
+                    Legal
                   </p>
-                  <ul className="space-y-3 sm:space-y-5">
+                  <ul className="space-y-3 sm:space-y-4">
                     <li>
                       <AnimatedLink
                         href="/policies/terms-conditions"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white text-sm"
                       >
-                        Terms & Conditions
+                        Terms
                       </AnimatedLink>
                     </li>
                     <li>
                       <AnimatedLink
                         href="/policies/privacy-policy"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white text-sm"
                       >
-                        Privacy Policy
+                        Privacy
                       </AnimatedLink>
                     </li>
                     <li>
                       <AnimatedLink
                         href="/policies/return-refund"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white text-sm"
                       >
-                        Return & Refund Policy
+                        Returns
                       </AnimatedLink>
                     </li>
                     <li>
                       <AnimatedLink
                         href="/policies/shipping"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
+                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white text-sm"
                       >
-                        Shipping Policy
-                      </AnimatedLink>
-                    </li>
-                    <li>
-                      <AnimatedLink
-                        href="/policies/cookie-policy"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
-                      >
-                        Cookie Policy
-                      </AnimatedLink>
-                    </li>
-                    <li>
-                      <AnimatedLink
-                        href="/policies/cancellation"
-                        className="text-neutral-400 hover:text-white dark:text-neutral-400 dark:hover:text-white"
-                      >
-                        Cancellation Policy
+                        Shipping
                       </AnimatedLink>
                     </li>
                   </ul>
@@ -296,7 +283,7 @@ const Footer = ({ className, collections = [] }: FooterProps) => {
           </div>
         </div>
         <Reveal delay={0.4} direction="up">
-          <div className="relative pt-[26px] pb-[100px] text-center border-t border-neutral-800">
+          <div className="relative pt-[26px] pb-8 md:pb-16 lg:pb-[100px] text-center border-t border-neutral-800">
             <p className="text-neutral-400 font-normal text-sm">
               Copyright &copy; {currentYear} {copyrightName}
               {copyrightName.length && !copyrightName.endsWith(".")

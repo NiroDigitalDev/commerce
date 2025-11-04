@@ -1,0 +1,259 @@
+Here’s a single **`.cursor/rules`** doc you can reference every time you refactor for responsive. It encodes the exact patterns you used in those diffs (desktop grid vs mobile carousel, `section-grid` only at `md+`, clamp typography/spacing, list/item spacing, hero/footer/bento behaviors, and the optional `useResponsiveDelay` hook).
+
+Paste this as e.g. `.cursor/rules/responsive.rules.mdc`, and in Cursor prompts write:
+“Refactor `X` to mobile using `responsive.rules.mdc`.”
+
+````yaml
+---
+description: Mobile-first responsive refactor playbook (grids, carousels, clamp type, spacing) for Vercel ecommerce fork
+globs: app/**/*.tsx, components/**/*.tsx, components/styles/**/*.css, components/**/*.css
+alwaysApply: false
+---
+
+Default to a **mobile-first** layout using existing tokens/themes. Keep SSR/SSG boundaries intact and avoid new deps.
+
+- Reuse `design-tokens.css`, `themes/*`, `globals.css`.
+- Do not access `window` in server components.
+- Prefer fluid sizing (`clamp`, `%`, `auto`) over fixed px.
+- Respect dark mode classes/variables.
+
+## Grid visibility & section-grid rule
+
+**Make desktop grids appear only from `md` up**. Do not force grid on mobile:
+
+```css
+/* sections.css */
+.section-grid {
+  /* mobile: no display so it can be hidden or stack */
+  gap: var(--grid-gap-lg, var(--spacing-7));
+}
+@media (min-width: 768px) {
+  .section-grid { display: grid; }
+}
+
+/* column helpers remain responsive */
+.section-grid-2 { @apply grid-cols-1 md:grid-cols-2; }
+.section-grid-3 { @apply grid-cols-1 md:grid-cols-2 xl:grid-cols-3; }
+.section-grid-4 { @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4; }
+````
+
+**Desktop Grid / Mobile Carousel toggle (component pattern):**
+
+```tsx
+{/* Desktop: hidden on mobile */}
+<div className="hidden md:grid section-grid section-grid-3">
+  {items.map((it, i) => (
+    <Reveal delay={0.1 * i} direction="up" key={it.id}>
+      <Card data={it} />
+    </Reveal>
+  ))}
+</div>
+
+{/* Mobile: hidden on desktop */}
+<div className="block md:hidden">
+  <Carousel opts={{ align: 'start', loop: true }} className="w-full">
+    <CarouselContent className="-ml-4">
+      {items.map((it, i) => (
+        <CarouselItem key={it.id} className="pl-4">
+          <Reveal delay={0.1 * i} direction="up">
+            <Card data={it} />
+          </Reveal>
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+    <div className="mt-6 flex justify-center gap-3">
+      <CarouselPrevious className="static translate-x-0 translate-y-0" />
+      <CarouselNext className="static translate-x-0 translate-y-0" />
+    </div>
+  </Carousel>
+</div>
+```
+
+## Optional: responsive animation cadence
+
+Use a small helper to speed up reveals on mobile:
+
+```tsx
+// useResponsiveDelay.ts
+import { useEffect, useState } from "react";
+export const useResponsiveDelay = (delay: number) => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  return isMobile ? delay * 0.8 : delay;
+};
+```
+
+Usage:
+
+```tsx
+const headerDelay = useResponsiveDelay(0.3);
+<Reveal delay={headerDelay}>…</Reveal>
+```
+
+## Clamp typography & compact spacing on mobile
+
+```css
+/* Titles & body */
+.h1, .section-title, .hero-title {
+  font-size: clamp(2rem, 8vw, var(--font-size-6xl));
+  line-height: 1.1;
+}
+@media (min-width: 640px){
+  .hero-title { font-size: var(--font-size-6xl); line-height: .95; }
+}
+
+.h2 { font-size: clamp(1.5rem, 4vw, var(--font-size-4xl)); line-height: 1.2; }
+.body, .prose { font-size: clamp(.95rem, .4vw + .85rem, 1.05rem); line-height: 1.6; }
+
+/* Section rhythm */
+.section-spacing { padding-block: var(--section-spacing-y, var(--section-y)); }
+.section-actions { @apply flex justify-center; margin-top: var(--spacing-10); }
+@media (min-width: 768px){ .section-actions { margin-top: var(--spacing-14); } }
+```
+
+## Lists, badges, and item alignment (mobile readability)
+
+```tsx
+{/* Better hit area & alignment for icon lists */}
+<li className="flex items-start gap-3">
+  <span className="size-6 min-w-6 flex items-center justify-center bg-white/20 backdrop-blur-[15px] rounded-full shrink-0 mt-0.5">
+    <Check className="size-4 text-white" strokeWidth={3}/>
+  </span>
+  <p className="text-white/80 text-sm md:text-base">Text…</p>
+</li>
+
+{/* Center badges on mobile, left on desktop */}
+<Badge className="mb-3.5 md:mb-5 mx-auto xl:mx-0 w-fit" variant="secondary">About Us</Badge>
+```
+
+## Buttons
+
+```tsx
+<ButtonLink className="w-full md:w-auto" size="lg">Primary</ButtonLink>
+```
+
+## Order swapping (image/text)
+
+```tsx
+{/* Mobile: text first; Desktop: image first */}
+<div className="order-1 lg:order-2">Text block…</div>
+<div className="order-2 lg:order-1">Image block…</div>
+```
+
+## Collections “bento” grid (2 cols mobile → 4 cols desktop)
+
+```css
+/* Mobile: 2 cols, dense placement */
+.collection-grid { @apply grid grid-cols-2; gap: var(--spacing-3); grid-auto-rows: 160px; grid-auto-flow: dense; }
+@media (min-width: 640px){ .collection-grid { grid-auto-rows: 180px; } }
+@media (min-width: 768px){ .collection-grid { @apply grid-cols-4; gap: var(--spacing-4); grid-auto-rows: 200px; } }
+
+/* Mobile sizes */
+.collection-card-hero   { @apply col-span-2 row-span-1; }
+.collection-card-tall   { @apply col-span-1 row-span-2; }
+.collection-card-small  { @apply col-span-1 row-span-1; }
+.collection-card-wide   { @apply col-span-2 row-span-1; }
+
+/* Desktop sizes */
+@media (min-width: 768px){
+  .collection-card-hero   { @apply col-span-2 row-span-2; }
+  .collection-card-tall   { @apply col-span-1 row-span-2; }
+  .collection-card-small  { @apply col-span-1 row-span-1; }
+  .collection-card-wide   { @apply col-span-2 row-span-1; }
+}
+
+/* Card padding & type */
+.collection-card { @apply relative overflow-hidden flex flex-col justify-between w-full h-full;
+  border-radius: var(--collection-card-radius, var(--card-radius));
+  padding: clamp(1rem, 3vw, var(--spacing-4));
+  transition: all var(--duration-slow) var(--ease-out);
+}
+@media (min-width:640px){ .collection-card { padding: var(--spacing-6); } }
+@media (min-width:768px){ .collection-card { padding: var(--spacing-8); } }
+
+.collection-card-title-hero    { font-size: clamp(1.25rem, 4vw, var(--font-size-2xl)); }
+@media (min-width:640px){ .collection-card-title-hero { font-size: var(--font-size-3xl); } }
+@media (min-width:768px){ .collection-card-title-hero { font-size: var(--font-size-4xl); } }
+
+.collection-card-title-regular { font-size: clamp(.875rem, 3vw, var(--font-size-lg)); }
+@media (min-width:640px){ .collection-card-title-regular { font-size: var(--font-size-xl); } }
+@media (min-width:768px){ .collection-card-title-regular { font-size: var(--font-size-2xl); } }
+
+.collection-card-description-hero { font-size: clamp(.75rem, 2vw, var(--font-size-sm)); @apply line-clamp-2; }
+@media (min-width:640px){ .collection-card-description-hero { font-size: var(--font-size-base); @apply line-clamp-3; } }
+
+.collection-card-description-regular { font-size: clamp(.7rem, 1.8vw, var(--font-size-xs)); @apply line-clamp-2; }
+@media (min-width:640px){ .collection-card-description-regular { font-size: var(--font-size-sm); } }
+@media (min-width:768px){ .collection-card-description-regular { font-size: var(--font-size-base); } }
+```
+
+## Hero refinements
+
+```css
+.hero-title    { @apply text-neutral-900 dark:text-white uppercase; font-size: clamp(2rem, 8vw, var(--font-size-6xl)); line-height: 1.1; letter-spacing: var(--tracking-wide); margin-bottom: var(--spacing-6); }
+@media (min-width:640px){ .hero-title { font-size: var(--font-size-6xl); line-height: .95; } }
+@media (min-width:768px){ .hero-title { font-size: var(--font-size-7xl); } }
+
+.hero-subtitle { @apply text-neutral-700 dark:text-neutral-200 max-w-2xl leading-relaxed; font-size: clamp(1rem, 3vw, var(--font-size-lg)); margin-bottom: var(--spacing-6); }
+@media (min-width:640px){ .hero-subtitle { font-size: var(--font-size-xl); margin-bottom: var(--spacing-8); } }
+@media (min-width:768px){ .hero-subtitle { font-size: var(--font-size-2xl); } }
+@media (min-width:1024px){ .hero-subtitle { font-size: var(--font-size-3xl); } }
+
+.hero-buttons  { @apply flex flex-col sm:flex-row flex-wrap; gap: var(--spacing-3); margin-bottom: var(--spacing-8); }
+@media (min-width:640px){ .hero-buttons { gap: var(--spacing-4); margin-bottom: var(--spacing-10); } }
+
+.hero-button   { @apply inline-flex items-center justify-center gap-2 shadow-xl font-semibold whitespace-nowrap;
+  font-size: clamp(.875rem, 2vw, var(--font-size-base));
+  padding-inline: clamp(1.5rem, 4vw, var(--spacing-10));
+  padding-block:  clamp(.75rem, 2vw, var(--spacing-5));
+}
+@media (min-width:768px){ .hero-button { font-size: var(--font-size-xl); } }
+
+.hero-features { @apply grid grid-cols-2 sm:flex sm:flex-wrap; gap: var(--spacing-3); }
+@media (min-width:640px){ .hero-features { gap: var(--spacing-4); } }
+@media (min-width:768px){ .hero-features { gap: var(--spacing-6); } }
+@media (min-width:1024px){ .hero-features { gap: var(--spacing-8); } }
+
+.hero-feature-icon { @apply flex items-center justify-center rounded-full bg-primary/10 shrink-0;
+  width: clamp(2rem, 4vw, var(--spacing-9)); height: clamp(2rem, 4vw, var(--spacing-9));
+}
+.hero-feature-icon svg { @apply text-primary; width: clamp(1rem, 2vw, var(--spacing-5)); height: clamp(1rem, 2vw, var(--spacing-5)); }
+.hero-feature-text { @apply font-medium; font-size: clamp(.75rem, 2vw, var(--font-size-sm)); }
+```
+
+## Footer/nav grids
+
+```tsx
+{/* Overall grid: tighter gaps on mobile */}
+<div className="grid grid-cols-12 justify-between gap-x-6 gap-y-12 md:gap-y-16 pt-12 md:pt-16 pb-12 xl:pt-[90px]">
+  {/* Logo/social center on mobile */}
+  <Link href="/" className="flex items-center gap-2 justify-center md:justify-start">…</Link>
+
+  {/* Links: 2 cols mobile → 4 cols desktop */}
+  <div className="col-span-12 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 md:gap-y-8 xl:col-span-8">
+    {/* each column: */}<div className="col-span-1">…</div>
+  </div>
+</div>
+
+{/* Bottom bar padding scales with breakpoints */}
+<div className="relative pt-[26px] pb-8 md:pb-16 lg:pb-[100px] text-center border-t border-neutral-800">…</div>
+```
+
+## Media (Next/Image)
+
+```tsx
+<Image
+  src={src} alt={alt}
+  fill={false}
+  width={800} height={600}
+  style={{ width: "100%", height: "auto" }}
+  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
+/>
+/* If using fill, parent needs position:relative + aspect-ratio */
+```
+

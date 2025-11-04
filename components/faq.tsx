@@ -22,20 +22,20 @@ const Faq = () => {
   return (
     <section className="section-spacing bg-neutral-50 dark:bg-neutral-900">
       <div className="mx-auto max-w-7xl px-5">
-        <div className="mb-14 space-y-3 text-center md:mb-[70px]">
+        <div className="mb-10 md:mb-14 space-y-3 text-center">
           <Reveal delay={0.1}>
             <Badge variant="secondary" className="mb-3.5 md:mb-5">
               FAQ
             </Badge>
           </Reveal>
           <Reveal delay={0.2}>
-            <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+            <h2 className="text-2xl sm:text-3xl font-bold md:text-4xl lg:text-5xl px-4">
               Commonly <span className="text-primary inline-block">asked</span>{" "}
               questions
             </h2>
           </Reveal>
           <Reveal delay={0.3}>
-            <p className="mx-auto text-neutral-500 dark:text-neutral-400 lg:max-w-[620px]">
+            <p className="mx-auto text-neutral-500 dark:text-neutral-400 lg:max-w-[620px] text-sm md:text-base px-4">
               Everything you need to know about our premium Japanese matcha,
               from sourcing to brewing and storage
             </p>
@@ -47,19 +47,19 @@ const Faq = () => {
           <Accordion
             type="single"
             collapsible
-            className="mx-auto w-full max-w-[850px] space-y-4"
+            className="mx-auto w-full max-w-[850px] space-y-3 md:space-y-4"
             defaultValue="1"
           >
             {faqItems.map((item) => (
               <AccordionItem
-                className="rounded-[20px] bg-white px-6 dark:bg-neutral-800 sm:px-8"
+                className="rounded-[16px] md:rounded-[20px] bg-white px-4 sm:px-6 dark:bg-neutral-800 md:px-8"
                 key={item.id}
                 value={item.id.toString()}
               >
-                <AccordionTrigger className="text-left text-base font-normal text-neutral-900 dark:text-neutral-100 sm:text-lg">
+                <AccordionTrigger className="text-left text-sm sm:text-base font-normal text-neutral-900 dark:text-neutral-100 md:text-lg py-4">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-neutral-600 dark:text-neutral-400">
+                <AccordionContent className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>

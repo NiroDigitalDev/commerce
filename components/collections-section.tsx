@@ -1,12 +1,29 @@
+'use client';
+
 import { Reveal } from "@/components/animations";
 import { SectionHeader } from "@/components/shared";
 import ButtonLink from "components/button-link";
 import type { Collection } from "lib/shopify/types";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface CollectionsSectionProps {
   collections: Collection[];
 }
+
+// Hook to adjust delays for mobile (20% faster)
+const useResponsiveDelay = (delay: number): number => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile ? delay * 0.8 : delay;
+};
 
 const CollectionsSection = ({ collections }: CollectionsSectionProps) => {
   // Filter out "All" collection and hidden collections, take first 6
@@ -18,6 +35,9 @@ const CollectionsSection = ({ collections }: CollectionsSectionProps) => {
     .slice(0, 6);
 
   if (!displayCollections?.length) return null;
+
+  const headerDelay = useResponsiveDelay(0.3);
+  const buttonDelay = useResponsiveDelay(0.8);
 
   // Grid size classes for bento layout
   const gridSizeClasses = [
@@ -50,15 +70,16 @@ const CollectionsSection = ({ collections }: CollectionsSectionProps) => {
           title="Explore Our"
           titleHighlight="Collections"
           description="Discover our curated collections, each carefully selected to bring you the finest matcha experiences."
-          delay={0.3}
+          delay={headerDelay}
         />
 
+        {/* Responsive Bento Grid - Works on all screen sizes */}
         <div className="collection-grid">
           {displayCollections.map((collection, index) => {
             const isHero = index === 0;
             return (
               <Reveal
-                delay={0.1 * index}
+                delay={useResponsiveDelay(0.1 * index)}
                 direction="up"
                 key={collection.handle}
                 className={gridSizeClasses[index]}
@@ -81,13 +102,13 @@ const CollectionsSection = ({ collections }: CollectionsSectionProps) => {
                         </span>
                       </div>
                       <h3
-                        className={`collection-card-title ${isHero ? "collection-card-title-hero" : "collection-card-title-regular"}`}
+                        className={`collection-card-title ${isHero ? "collection-card-title-hero md:collection-card-title-hero" : "collection-card-title-regular"}`}
                       >
                         {collection.title}
                       </h3>
                       {collection.description && (
                         <p
-                          className={`collection-card-description ${isHero ? "collection-card-description-hero" : "collection-card-description-regular"}`}
+                          className={`collection-card-description ${isHero ? "collection-card-description-hero md:collection-card-description-hero" : "collection-card-description-regular"}`}
                         >
                           {collection.description}
                         </p>
@@ -118,7 +139,7 @@ const CollectionsSection = ({ collections }: CollectionsSectionProps) => {
           })}
         </div>
 
-        <Reveal delay={0.8}>
+        <Reveal delay={buttonDelay}>
           <div className="section-actions">
             <ButtonLink
               href="/shop"

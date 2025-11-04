@@ -80,8 +80,13 @@
 
   /* ===== Grid Layouts ===== */
   .section-grid {
-    @apply grid;
+    /* no display at mobile; let it be block so it can be hidden cleanly */
     gap: var(--grid-gap-lg, var(--spacing-7));
+  }
+  @media (min-width: 768px) {
+    .section-grid {
+      display: grid; /* becomes a grid only from md+ */
+    }
   }
 
   .section-grid-2 {

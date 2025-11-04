@@ -8,24 +8,35 @@
 
 @layer utilities {
   /* ===== Bento Grid Sizes ===== */
+  /* Mobile (2 columns): Wide (2x1), Tall (1x2), Tall (1x2), Wide (2x1), Small (1x1), Small (1x1) */
   /* Desktop (4 columns): Hero (2x2), Tall (1x2), Small (1x1), Tall (1x2), Wide (2x1), Small (1x1) */
 
   .collection-grid {
-    @apply grid grid-cols-3 md:grid-cols-4;
+    @apply grid grid-cols-2;
     gap: var(--grid-gap-sm, var(--spacing-3));
-    grid-auto-rows: 190px;
+    grid-auto-rows: 160px;
+    grid-auto-flow: dense;
+  }
+
+  @media (min-width: 640px) {
+    .collection-grid {
+      grid-auto-rows: 180px;
+    }
   }
 
   @media (min-width: 768px) {
     .collection-grid {
+      @apply grid-cols-4;
       gap: var(--grid-gap-md, var(--spacing-4));
       grid-auto-rows: 200px;
     }
   }
 
   /* Grid item sizes - these should be on the Reveal wrapper */
+  
+  /* Mobile bento layout (2 columns) - Uses dense packing to fill gaps */
   .collection-card-hero {
-    @apply col-span-2 row-span-2;
+    @apply col-span-2 row-span-1;
   }
 
   .collection-card-tall {
@@ -40,9 +51,22 @@
     @apply col-span-2 row-span-1;
   }
 
+  /* Desktop bento layout (4 columns) */
   @media (min-width: 768px) {
+    .collection-card-hero {
+      @apply col-span-2 row-span-2;
+    }
+
+    .collection-card-tall {
+      @apply col-span-1 row-span-2;
+    }
+
+    .collection-card-small {
+      @apply col-span-1 row-span-1;
+    }
+
     .collection-card-wide {
-      @apply col-span-2;
+      @apply col-span-2 row-span-1;
     }
   }
 
@@ -50,8 +74,14 @@
   .collection-card {
     @apply relative overflow-hidden flex flex-col justify-between w-full h-full;
     border-radius: var(--collection-card-radius, var(--card-radius));
-    padding: var(--spacing-6);
+    padding: clamp(1rem, 3vw, var(--spacing-4));
     transition: all var(--duration-slow) var(--ease-out);
+  }
+
+  @media (min-width: 640px) {
+    .collection-card {
+      padding: var(--spacing-6);
+    }
   }
 
   @media (min-width: 768px) {
@@ -116,7 +146,13 @@
   }
 
   .collection-card-title-hero {
-    font-size: var(--font-size-3xl);
+    font-size: clamp(1.25rem, 4vw, var(--font-size-2xl));
+  }
+
+  @media (min-width: 640px) {
+    .collection-card-title-hero {
+      font-size: var(--font-size-3xl);
+    }
   }
 
   @media (min-width: 768px) {
@@ -132,7 +168,13 @@
   }
 
   .collection-card-title-regular {
-    font-size: var(--font-size-xl);
+    font-size: clamp(0.875rem, 3vw, var(--font-size-lg));
+  }
+
+  @media (min-width: 640px) {
+    .collection-card-title-regular {
+      font-size: var(--font-size-xl);
+    }
   }
 
   @media (min-width: 768px) {
@@ -152,8 +194,15 @@
   }
 
   .collection-card-description-hero {
-    font-size: var(--font-size-base);
-    @apply line-clamp-3;
+    font-size: clamp(0.75rem, 2vw, var(--font-size-sm));
+    @apply line-clamp-2;
+  }
+
+  @media (min-width: 640px) {
+    .collection-card-description-hero {
+      font-size: var(--font-size-base);
+      @apply line-clamp-3;
+    }
   }
 
   @media (min-width: 768px) {
@@ -163,8 +212,14 @@
   }
 
   .collection-card-description-regular {
-    font-size: var(--font-size-sm);
+    font-size: clamp(0.7rem, 1.8vw, var(--font-size-xs));
     @apply line-clamp-2;
+  }
+
+  @media (min-width: 640px) {
+    .collection-card-description-regular {
+      font-size: var(--font-size-sm);
+    }
   }
 
   @media (min-width: 768px) {

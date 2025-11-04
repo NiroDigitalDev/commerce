@@ -8,23 +8,23 @@ import Image from "next/image";
 
 const FeaturesLeft = () => {
   return (
-    <section className="section-spacing pt-20 md:pt-24 lg:pt-80 relative">
+    <section className="section-spacing pt-16 md:pt-24 lg:pt-80 relative">
       <div className="relative z-10 bg-transparent dark:bg-transparent">
         <div className="mx-auto max-w-7xl px-5">
-          <div className="flex flex-col lg:flex-row items-start gap-y-24 gap-x-[140px]">
+          <div className="flex flex-col lg:flex-row items-start gap-y-16 lg:gap-y-24 gap-x-[140px]">
             <div className="w-full lg:flex-1 lg:sticky lg:top-[20%] lg:max-w-full max-w-[520px] lg:mx-0 mx-auto text-center lg:text-left flex flex-col justify-start">
               <Reveal delay={0.2}>
-                <Badge variant="secondary" className="mb-5">
+                <Badge variant="secondary" className="mb-5 mx-auto lg:mx-0 w-fit">
                   Matcha Excellence
                 </Badge>
               </Reveal>
               <Reveal delay={0.3}>
-                <h2 className="mb-3 max-w-[529px] text-3xl font-bold md:text-4xl lg:text-5xl text-white">
+                <h2 className="mb-3 max-w-[529px] text-2xl sm:text-3xl font-bold md:text-4xl lg:text-5xl text-white mx-auto lg:mx-0">
                   Why choose our matcha?
                 </h2>
               </Reveal>
               <Reveal delay={0.4}>
-                <p className="mb-7 lg:max-w-[620px] text-white/90">
+                <p className="mb-7 lg:max-w-[620px] text-white/90 text-sm md:text-base">
                   Experience the finest Japanese matcha with our carefully
                   curated collection. Each batch is authenticated for purity,
                   freshness, and traditional quality.
@@ -35,7 +35,7 @@ const FeaturesLeft = () => {
                   <ButtonLink
                     href="/shop"
                     size="lg"
-                    className="w-[85%] md:w-auto mx-auto"
+                    className="w-full md:w-auto"
                   >
                     Explore Matcha
                   </ButtonLink>
@@ -44,11 +44,11 @@ const FeaturesLeft = () => {
             </div>
 
             <div className="w-full lg:flex-1 lg:max-w-full">
-              <div className="grid grid-cols-2 gap-4 md:gap-6">
+              <div className="grid grid-cols-2 gap-3 md:gap-6">
                 {/* Left Column */}
-                <div className="flex flex-col gap-4 md:gap-6">
+                <div className="flex flex-col gap-3 md:gap-6">
                   <Reveal delay={0.6} direction="up">
-                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
+                    <div className="relative aspect-[3/4] rounded-xl md:rounded-2xl overflow-hidden shadow-lg">
                       <Image
                         src={splashImage}
                         alt="Premium matcha tea"
@@ -59,7 +59,7 @@ const FeaturesLeft = () => {
                     </div>
                   </Reveal>
                   <Reveal delay={0.8} direction="up">
-                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
+                    <div className="relative aspect-[3/4] rounded-xl md:rounded-2xl overflow-hidden shadow-lg">
                       <Image
                         src={splashImage}
                         alt="Ceremonial grade matcha"
@@ -72,9 +72,9 @@ const FeaturesLeft = () => {
                 </div>
 
                 {/* Right Column - Offset */}
-                <div className="flex flex-col gap-4 md:gap-6 mt-8 md:mt-12">
+                <div className="flex flex-col gap-3 md:gap-6 mt-6 md:mt-12">
                   <Reveal delay={0.7} direction="up">
-                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
+                    <div className="relative aspect-[3/4] rounded-xl md:rounded-2xl overflow-hidden shadow-lg">
                       <Image
                         src={splashImage}
                         alt="Japanese matcha collection"
@@ -85,7 +85,7 @@ const FeaturesLeft = () => {
                     </div>
                   </Reveal>
                   <Reveal delay={0.9} direction="up">
-                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
+                    <div className="relative aspect-[3/4] rounded-xl md:rounded-2xl overflow-hidden shadow-lg">
                       <Image
                         src={splashImage}
                         alt="Authentic matcha tea"

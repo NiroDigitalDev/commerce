@@ -38,10 +38,17 @@
   /* ===== Hero Title ===== */
   .hero-title {
     @apply text-neutral-900 dark:text-white uppercase;
-    font-size: var(--hero-title-size, var(--font-size-6xl));
-    line-height: 0.95;
+    font-size: clamp(2rem, 8vw, var(--font-size-6xl));
+    line-height: 1.1;
     letter-spacing: var(--tracking-wide);
     margin-bottom: var(--spacing-6);
+  }
+  
+  @media (min-width: 640px) {
+    .hero-title {
+      font-size: var(--font-size-6xl);
+      line-height: 0.95;
+    }
   }
   
   @media (min-width: 768px) {
@@ -69,11 +76,24 @@
   /* ===== Hero Subtitle ===== */
   .hero-subtitle {
     @apply text-neutral-700 dark:text-neutral-200 max-w-2xl leading-relaxed;
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-8);
+    font-size: clamp(1rem, 3vw, var(--font-size-lg));
+    margin-bottom: var(--spacing-6);
+  }
+  
+  @media (min-width: 640px) {
+    .hero-subtitle {
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--spacing-8);
+    }
   }
   
   @media (min-width: 768px) {
+    .hero-subtitle {
+      font-size: var(--font-size-2xl);
+    }
+  }
+  
+  @media (min-width: 1024px) {
     .hero-subtitle {
       font-size: var(--font-size-3xl);
     }
@@ -81,25 +101,50 @@
   
   /* ===== Hero Buttons ===== */
   .hero-buttons {
-    @apply flex flex-wrap;
-    gap: var(--spacing-4);
-    margin-bottom: var(--spacing-10);
+    @apply flex flex-col sm:flex-row flex-wrap;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-8);
+  }
+  
+  @media (min-width: 640px) {
+    .hero-buttons {
+      gap: var(--spacing-4);
+      margin-bottom: var(--spacing-10);
+    }
   }
   
   .hero-button {
     @apply inline-flex items-center justify-center gap-2 shadow-xl font-semibold whitespace-nowrap;
-    font-size: var(--font-size-xl);
-    padding-inline: var(--spacing-10);
-    padding-block: var(--spacing-5);
+    font-size: clamp(0.875rem, 2vw, var(--font-size-base));
+    padding-inline: clamp(1.5rem, 4vw, var(--spacing-10));
+    padding-block: clamp(0.75rem, 2vw, var(--spacing-5));
+  }
+  
+  @media (min-width: 768px) {
+    .hero-button {
+      font-size: var(--font-size-xl);
+    }
   }
   
   /* ===== Hero Features ===== */
   .hero-features {
-    @apply flex flex-wrap;
-    gap: var(--spacing-6);
+    @apply grid grid-cols-2 sm:flex sm:flex-wrap;
+    gap: var(--spacing-3);
+  }
+  
+  @media (min-width: 640px) {
+    .hero-features {
+      gap: var(--spacing-4);
+    }
   }
   
   @media (min-width: 768px) {
+    .hero-features {
+      gap: var(--spacing-6);
+    }
+  }
+  
+  @media (min-width: 1024px) {
     .hero-features {
       gap: var(--spacing-8);
     }
@@ -111,20 +156,20 @@
   }
   
   .hero-feature-icon {
-    @apply flex items-center justify-center rounded-full bg-primary/10;
-    width: var(--spacing-9);
-    height: var(--spacing-9);
+    @apply flex items-center justify-center rounded-full bg-primary/10 shrink-0;
+    width: clamp(2rem, 4vw, var(--spacing-9));
+    height: clamp(2rem, 4vw, var(--spacing-9));
   }
   
   .hero-feature-icon svg {
     @apply text-primary;
-    width: var(--spacing-5);
-    height: var(--spacing-5);
+    width: clamp(1rem, 2vw, var(--spacing-5));
+    height: clamp(1rem, 2vw, var(--spacing-5));
   }
   
   .hero-feature-text {
     @apply font-medium;
-    font-size: var(--font-size-sm);
+    font-size: clamp(0.75rem, 2vw, var(--font-size-sm));
   }
   
   @media (min-width: 768px) {
