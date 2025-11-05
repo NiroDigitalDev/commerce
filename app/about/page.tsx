@@ -3,16 +3,16 @@
 import latteImage from "@/assets/latte.jpg";
 import { Reveal } from "@/components/animations";
 import { SectionHeader } from "@/components/shared";
-import ButtonLink from "components/button-link";
 import { Badge } from "@/components/ui/badge";
+import ButtonLink from "components/button-link";
 import {
   Award,
-  Heart,
-  Leaf,
-  Users,
-  ShieldCheck,
   BookOpen,
   Check,
+  Heart,
+  Leaf,
+  ShieldCheck,
+  Users,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -105,20 +105,20 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="section-spacing bg-white dark:bg-black">
         <div className="mx-auto max-w-7xl px-5">
-          <div className="text-center max-w-4xl mx-auto space-y-6">
+          <div className="text-center max-w-4xl mx-auto space-y-5 md:space-y-6">
             <Reveal delay={0.1}>
               <Badge variant="secondary" className="mb-3.5 md:mb-5">
                 About Us
               </Badge>
             </Reveal>
             <Reveal delay={0.2}>
-              <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl">
+              <h1 className="text-3xl sm:text-4xl font-bold md:text-5xl lg:text-6xl px-4">
                 Crafting Authentic Matcha Experiences{" "}
                 <span className="text-primary">Since 2014</span>
               </h1>
             </Reveal>
             <Reveal delay={0.3}>
-              <p className="text-neutral-600 dark:text-neutral-400 text-lg">
+              <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-lg px-4">
                 Bringing the finest Japanese matcha tradition to tea lovers
                 worldwide through direct partnerships with renowned tea farms in
                 Uji, Kyoto, and beyond.
@@ -131,11 +131,11 @@ export default function AboutPage() {
       {/* Story Section */}
       <section className="section-spacing bg-neutral-50 dark:bg-neutral-900">
         <div className="mx-auto max-w-7xl px-5">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-20">
             {/* Image */}
             <div className="w-full lg:flex-1">
               <Reveal delay={0.2}>
-                <div className="relative w-full max-w-[500px] h-[500px] rounded-3xl overflow-hidden mx-auto lg:mx-0">
+                <div className="relative w-full max-w-[500px] h-[350px] md:h-[450px] lg:h-[500px] rounded-2xl md:rounded-3xl overflow-hidden mx-auto lg:mx-0">
                   <Image
                     src={latteImage}
                     alt="Premium matcha preparation"
@@ -148,20 +148,20 @@ export default function AboutPage() {
             </div>
 
             {/* Content */}
-            <div className="w-full lg:flex-1 space-y-6">
+            <div className="w-full lg:flex-1 space-y-5 md:space-y-6 text-center lg:text-left">
               <Reveal delay={0.3}>
-                <Badge variant="secondary" className="mb-3.5">
+                <Badge variant="secondary" className="mb-3.5 mx-auto lg:mx-0">
                   Our Story
                 </Badge>
               </Reveal>
               <Reveal delay={0.4}>
-                <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+                <h2 className="text-2xl sm:text-3xl font-bold md:text-4xl lg:text-5xl">
                   A Journey to{" "}
                   <span className="text-primary">Authentic Matcha</span>
                 </h2>
               </Reveal>
               <Reveal delay={0.5}>
-                <div className="space-y-4 text-neutral-600 dark:text-neutral-400">
+                <div className="space-y-3 md:space-y-4 text-sm md:text-base text-neutral-600 dark:text-neutral-400">
                   <p>
                     Our story began over a decade ago when our founder traveled
                     to Uji, Kyoto—the birthplace of Japanese green tea. Amazed
@@ -201,21 +201,21 @@ export default function AboutPage() {
           />
 
           <Reveal delay={0.5}>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {missions.map((mission, index) => {
                 const Icon = mission.icon;
                 return (
                   <div
                     key={index}
-                    className="bg-neutral-50 dark:bg-neutral-900 rounded-3xl p-8 space-y-4 text-center"
+                    className="bg-neutral-50 dark:bg-neutral-900 rounded-2xl md:rounded-3xl p-6 md:p-8 space-y-3 md:space-y-4 text-center"
                   >
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 dark:bg-primary/20">
-                      <Icon className="w-8 h-8 text-primary" />
+                    <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-primary/10 dark:bg-primary/20">
+                      <Icon className="w-7 h-7 md:w-8 md:h-8 text-primary" />
                     </div>
-                    <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
+                    <h3 className="text-lg md:text-xl font-bold text-neutral-900 dark:text-white">
                       {mission.title}
                     </h3>
-                    <p className="text-neutral-600 dark:text-neutral-400">
+                    <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400">
                       {mission.description}
                     </p>
                   </div>
@@ -238,23 +238,35 @@ export default function AboutPage() {
           />
 
           <Reveal delay={0.5}>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[200px] grid-flow-dense">
               {values.map((value, index) => {
                 const Icon = value.icon;
+                // Create bento-style layout pattern - mobile and desktop
+                const gridClasses = [
+                  "col-span-2 row-span-1 md:col-span-2 md:row-span-2", // Hero - Wide on mobile, large on desktop
+                  "col-span-1 row-span-2 md:col-span-1 md:row-span-2", // Tall
+                  "col-span-1 row-span-1 md:col-span-1 md:row-span-1", // Small
+                  "col-span-1 row-span-2 md:col-span-1 md:row-span-2", // Tall
+                  "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // Wide
+                  "col-span-1 row-span-1 md:col-span-1 md:row-span-1", // Small
+                ];
+                
                 return (
                   <div
                     key={index}
-                    className="bg-white dark:bg-neutral-800 rounded-2xl p-6 space-y-4"
+                    className={`bg-white dark:bg-neutral-800 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 flex flex-col justify-between ${gridClasses[index]}`}
                   >
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 dark:bg-primary/20">
-                      <Icon className="w-6 h-6 text-primary" />
+                    <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-lg md:rounded-xl bg-primary/10 dark:bg-primary/20 self-start">
+                      <Icon className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-primary" />
                     </div>
-                    <h3 className="text-lg font-bold text-neutral-900 dark:text-white">
-                      {value.title}
-                    </h3>
-                    <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-                      {value.description}
-                    </p>
+                    <div className="space-y-1 md:space-y-2">
+                      <h3 className="text-sm md:text-base lg:text-lg font-bold text-neutral-900 dark:text-white line-clamp-2">
+                        {value.title}
+                      </h3>
+                      <p className="text-neutral-600 dark:text-neutral-400 text-xs md:text-sm line-clamp-3">
+                        {value.description}
+                      </p>
+                    </div>
                   </div>
                 );
               })}
@@ -267,19 +279,19 @@ export default function AboutPage() {
       <section className="section-spacing bg-white dark:bg-black">
         <div className="mx-auto max-w-7xl px-5">
           <Reveal delay={0.3}>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {stats.map((stat, index) => (
                 <div
                   key={index}
-                  className="bg-neutral-50 dark:bg-neutral-900 rounded-2xl p-8 text-center space-y-2"
+                  className="bg-neutral-50 dark:bg-neutral-900 rounded-xl md:rounded-2xl p-6 md:p-8 text-center space-y-1 md:space-y-2"
                 >
-                  <div className="text-4xl md:text-5xl font-black text-primary">
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-black text-primary">
                     {stat.number}
                   </div>
-                  <div className="text-lg font-bold text-neutral-900 dark:text-white">
+                  <div className="text-base md:text-lg font-bold text-neutral-900 dark:text-white">
                     {stat.label}
                   </div>
-                  <div className="text-sm text-neutral-600 dark:text-neutral-400">
+                  <div className="text-xs md:text-sm text-neutral-600 dark:text-neutral-400">
                     {stat.description}
                   </div>
                 </div>
@@ -300,24 +312,24 @@ export default function AboutPage() {
               </div>
             </Reveal>
 
-            <div className="grid grid-cols-12 items-center xl:gap-[115px] gap-y-8 md:gap-y-14">
+            <div className="grid grid-cols-12 items-center xl:gap-[115px] gap-y-10 md:gap-y-14">
               <div className="col-span-12 xl:col-span-6">
-                <div className="max-w-[508px] xl:mx-0 mx-auto space-y-8 md:space-y-14 xl:text-left text-center">
-                  <div className="space-y-5">
+                <div className="max-w-[508px] xl:mx-0 mx-auto space-y-6 md:space-y-10 xl:text-left text-center">
+                  <div className="space-y-4 md:space-y-5">
                     <Reveal delay={0.2}>
-                      <Badge variant="secondary" className="mb-3.5 md:mb-5">
+                      <Badge variant="secondary" className="mb-3.5 md:mb-5 mx-auto xl:mx-0">
                         Start Your Journey
                       </Badge>
                     </Reveal>
                     <div className="space-y-3">
                       <Reveal delay={0.3}>
-                        <h2 className="text-white text-3xl font-bold md:text-4xl lg:text-5xl">
+                        <h2 className="text-white text-2xl sm:text-3xl font-bold md:text-4xl lg:text-5xl">
                           Experience the finest{" "}
                           <span className="text-white">Japanese matcha</span>
                         </h2>
                       </Reveal>
                       <Reveal delay={0.4}>
-                        <p className="text-white/80">
+                        <p className="text-white/80 text-sm md:text-base">
                           Discover our curated collection of premium ceremonial
                           grade matcha, carefully selected from Japan's most
                           renowned tea farms.
@@ -341,57 +353,57 @@ export default function AboutPage() {
 
               <div className="col-span-12 xl:col-span-6">
                 <div className="flex flex-col items-center xl:items-start">
-                  <ul className="space-y-5">
+                  <ul className="space-y-4 md:space-y-5 w-full">
                     <Reveal delay={0.6}>
-                      <li className="flex items-center gap-3">
-                        <span className="size-6 flex items-center justify-center bg-white/20 backdrop-blur-[15px] rounded-full shrink-0">
+                      <li className="flex items-start gap-3">
+                        <span className="size-6 min-w-6 flex items-center justify-center bg-white/20 backdrop-blur-[15px] rounded-full shrink-0 mt-0.5">
                           <Check className="size-4 text-white" strokeWidth={3} />
                         </span>
-                        <p className="text-white/80">
+                        <p className="text-white/80 text-sm md:text-base">
                           Direct sourcing from Uji, Kyoto's finest tea estates
                         </p>
                       </li>
                     </Reveal>
 
                     <Reveal delay={0.7}>
-                      <li className="flex items-center gap-3">
-                        <span className="size-6 flex items-center justify-center bg-white/20 backdrop-blur-[15px] rounded-full shrink-0">
+                      <li className="flex items-start gap-3">
+                        <span className="size-6 min-w-6 flex items-center justify-center bg-white/20 backdrop-blur-[15px] rounded-full shrink-0 mt-0.5">
                           <Check className="size-4 text-white" strokeWidth={3} />
                         </span>
-                        <p className="text-white/80">
+                        <p className="text-white/80 text-sm md:text-base">
                           Ceremonial grade quality in every batch
                         </p>
                       </li>
                     </Reveal>
 
                     <Reveal delay={0.8}>
-                      <li className="flex items-center gap-3">
-                        <span className="size-6 flex items-center justify-center bg-white/20 backdrop-blur-[15px] rounded-full shrink-0">
+                      <li className="flex items-start gap-3">
+                        <span className="size-6 min-w-6 flex items-center justify-center bg-white/20 backdrop-blur-[15px] rounded-full shrink-0 mt-0.5">
                           <Check className="size-4 text-white" strokeWidth={3} />
                         </span>
-                        <p className="text-white/80">
+                        <p className="text-white/80 text-sm md:text-base">
                           Expert guidance on brewing and selection
                         </p>
                       </li>
                     </Reveal>
 
                     <Reveal delay={0.9}>
-                      <li className="flex items-center gap-3">
-                        <span className="size-6 flex items-center justify-center bg-white/20 backdrop-blur-[15px] rounded-full shrink-0">
+                      <li className="flex items-start gap-3">
+                        <span className="size-6 min-w-6 flex items-center justify-center bg-white/20 backdrop-blur-[15px] rounded-full shrink-0 mt-0.5">
                           <Check className="size-4 text-white" strokeWidth={3} />
                         </span>
-                        <p className="text-white/80">
+                        <p className="text-white/80 text-sm md:text-base">
                           Sustainable and ethical tea farming practices
                         </p>
                       </li>
                     </Reveal>
 
                     <Reveal delay={1.0}>
-                      <li className="flex items-center gap-3">
-                        <span className="size-6 flex items-center justify-center bg-white/20 backdrop-blur-[15px] rounded-full shrink-0">
+                      <li className="flex items-start gap-3">
+                        <span className="size-6 min-w-6 flex items-center justify-center bg-white/20 backdrop-blur-[15px] rounded-full shrink-0 mt-0.5">
                           <Check className="size-4 text-white" strokeWidth={3} />
                         </span>
-                        <p className="text-white/80">
+                        <p className="text-white/80 text-sm md:text-base">
                           100% satisfaction guarantee on all products
                         </p>
                       </li>

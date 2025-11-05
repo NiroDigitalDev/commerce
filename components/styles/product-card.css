@@ -75,12 +75,12 @@
 
   .product-card-price {
     @apply font-bold text-neutral-900 dark:text-neutral-100;
-    font-size: var(--font-size-2xl);
+    font-size: clamp(var(--font-size-base), 3vw, var(--font-size-xl));
   }
 
   .product-card-price-range {
     @apply text-neutral-500 dark:text-neutral-400 font-normal;
-    font-size: var(--font-size-base);
+    font-size: clamp(var(--font-size-xs), 2vw, var(--font-size-sm));
   }
 
   .product-card-footer {

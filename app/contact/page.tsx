@@ -176,22 +176,22 @@ export default function ContactPage() {
           />
 
           <Reveal delay={0.5}>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               {/* Email Card */}
-              <div className="bg-neutral-50 dark:bg-neutral-900 rounded-2xl p-8 text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 dark:bg-primary/20">
-                  <Mail className="w-8 h-8 text-primary" />
+              <div className="col-span-2 md:col-span-1 bg-neutral-50 dark:bg-neutral-900 rounded-xl md:rounded-2xl p-6 md:p-8 text-center space-y-3 md:space-y-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-primary/10 dark:bg-primary/20">
+                  <Mail className="w-6 h-6 md:w-8 md:h-8 text-primary" />
                 </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
+                <div className="space-y-1 md:space-y-2">
+                  <h3 className="text-lg md:text-xl font-bold text-neutral-900 dark:text-white">
                     Email Us
                   </h3>
-                  <p className="text-neutral-600 dark:text-neutral-400 text-sm">
+                  <p className="text-neutral-600 dark:text-neutral-400 text-xs md:text-sm">
                     For product inquiries and bulk orders
                   </p>
                   <a
                     href="mailto:matcha@example.com"
-                    className="text-primary font-semibold hover:underline inline-block"
+                    className="text-primary font-semibold hover:underline inline-block text-sm md:text-base"
                   >
                     matcha@example.com
                   </a>
@@ -199,20 +199,20 @@ export default function ContactPage() {
               </div>
 
               {/* Phone Card */}
-              <div className="bg-neutral-50 dark:bg-neutral-900 rounded-2xl p-8 text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 dark:bg-primary/20">
-                  <Phone className="w-8 h-8 text-primary" />
+              <div className="bg-neutral-50 dark:bg-neutral-900 rounded-xl md:rounded-2xl p-6 md:p-8 text-center space-y-3 md:space-y-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-primary/10 dark:bg-primary/20">
+                  <Phone className="w-6 h-6 md:w-8 md:h-8 text-primary" />
                 </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
+                <div className="space-y-1 md:space-y-2">
+                  <h3 className="text-lg md:text-xl font-bold text-neutral-900 dark:text-white">
                     Call Us
                   </h3>
-                  <p className="text-neutral-600 dark:text-neutral-400 text-sm">
+                  <p className="text-neutral-600 dark:text-neutral-400 text-xs md:text-sm">
                     Speak with our matcha experts
                   </p>
                   <a
                     href="tel:+1234567890"
-                    className="text-primary font-semibold hover:underline inline-block"
+                    className="text-primary font-semibold hover:underline inline-block text-sm md:text-base"
                   >
                     +1 (234) 567-890
                   </a>
@@ -220,18 +220,18 @@ export default function ContactPage() {
               </div>
 
               {/* Location Card */}
-              <div className="bg-neutral-50 dark:bg-neutral-900 rounded-2xl p-8 text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 dark:bg-primary/20">
-                  <MapPin className="w-8 h-8 text-primary" />
+              <div className="bg-neutral-50 dark:bg-neutral-900 rounded-xl md:rounded-2xl p-6 md:p-8 text-center space-y-3 md:space-y-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-primary/10 dark:bg-primary/20">
+                  <MapPin className="w-6 h-6 md:w-8 md:h-8 text-primary" />
                 </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
+                <div className="space-y-1 md:space-y-2">
+                  <h3 className="text-lg md:text-xl font-bold text-neutral-900 dark:text-white">
                     Visit Us
                   </h3>
-                  <p className="text-neutral-600 dark:text-neutral-400 text-sm">
+                  <p className="text-neutral-600 dark:text-neutral-400 text-xs md:text-sm">
                     Our tea house location
                   </p>
-                  <p className="text-primary font-semibold">
+                  <p className="text-primary font-semibold text-sm md:text-base">
                     123 Tea District
                     <br />
                     Uji, Kyoto, Japan

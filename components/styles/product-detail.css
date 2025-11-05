@@ -15,7 +15,19 @@
 
   .product-detail-container {
     @apply w-full mx-auto;
-    padding-inline: 0;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .product-detail-container {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product-detail-container {
+      padding-inline: 2rem;
+    }
   }
 
   /* ===== Product Detail Card ===== */
@@ -261,6 +273,56 @@
     font-weight: 600;
   }
 
+  /* Mobile background image styles */
+  @media (max-width: 768px) {
+    .product-benefits-content-mobile {
+      @apply relative;
+      min-height: 500px;
+      padding: 2rem 1.5rem !important;
+    }
+
+    .product-benefits-content-mobile::before {
+      content: '';
+      @apply absolute inset-0;
+      background: rgba(255, 255, 255, 0.85);
+      z-index: 0;
+    }
+
+    .product-benefits-inner {
+      @apply relative z-10;
+    }
+
+    .product-benefits-title,
+    .product-benefits-description,
+    .product-benefit-label {
+      @apply text-neutral-900;
+    }
+
+    .product-promo-content-mobile {
+      @apply relative;
+      min-height: 500px;
+      padding: 2rem 1.5rem !important;
+    }
+
+    .product-promo-content-mobile::before {
+      content: '';
+      @apply absolute inset-0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 0;
+    }
+
+    .product-promo-inner {
+      @apply relative z-10;
+    }
+
+    .product-promo-title,
+    .product-promo-description,
+    .product-promo-stat-value p,
+    .product-promo-stat-label {
+      @apply text-white;
+    }
+  }
+
   /* Responsive adjustments */
   @media (max-width: 1024px) {
     .product-benefits-grid {
@@ -284,19 +346,23 @@
 
   @media (max-width: 640px) {
     .product-benefits-title {
-      @apply text-4xl;
-    }
-
-    .product-benefits-list {
-      @apply grid-cols-2 gap-4;
+      @apply text-3xl;
     }
 
     .product-benefits-description {
-      @apply mb-12;
+      @apply mb-8 text-sm;
+    }
+
+    .product-benefits-list {
+      @apply grid-cols-2 gap-3;
     }
 
     .product-benefits-content {
       padding: 24px 16px;
+    }
+
+    .product-benefit-label {
+      @apply text-xs;
     }
   }
 
@@ -424,20 +490,28 @@
 
   @media (max-width: 640px) {
     .product-promo-title {
-      @apply text-4xl;
+      @apply text-3xl;
     }
 
     .product-promo-stats {
-      @apply gap-6;
-      margin-bottom: 48px;
+      @apply grid grid-cols-2 gap-4;
+      margin-bottom: 32px;
     }
 
     .product-promo-stat {
       width: 100%;
     }
 
+    .product-promo-stat-value p {
+      @apply text-2xl;
+    }
+
+    .product-promo-stat-label {
+      @apply text-sm;
+    }
+
     .product-promo-description {
-      @apply mb-12;
+      @apply mb-8 text-base;
     }
 
     .product-promo-content {
@@ -578,14 +652,19 @@
   }
 
   @media (max-width: 768px) {
-    .testimonials-videos-wrapper {
+    /* Ensure desktop testimonials are hidden on mobile */
+    .testimonials-videos-wrapper.hidden {
+      display: none !important;
+    }
+
+    .testimonials-videos-wrapper:not(.hidden) {
       min-height: 400px;
       flex-wrap: wrap;
       gap: 1rem;
       justify-content: center;
     }
 
-    .testimonial-video-container {
+    .testimonials-videos-wrapper:not(.hidden) .testimonial-video-container {
       @apply relative;
       position: relative !important;
       width: 180px;
@@ -594,14 +673,31 @@
       margin: 0.5rem;
     }
 
-    .testimonial-video-container.hovered {
+    .testimonials-videos-wrapper:not(.hidden) .testimonial-video-container.hovered {
       transform: scale(1.05) !important;
     }
 
-    .testimonial-video-container.other-hovered {
+    .testimonials-videos-wrapper:not(.hidden) .testimonial-video-container.other-hovered {
       opacity: 1;
       transform: none !important;
     }
+  }
+
+  /* Mobile carousel styles */
+  .testimonial-video-wrapper-mobile {
+    @apply relative aspect-[9/16] w-full rounded-lg overflow-hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.15),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .testimonial-video-mobile {
+    @apply w-full h-full object-cover;
+  }
+
+  .testimonial-video-wrapper-mobile .testimonial-overlay {
+    opacity: 1;
   }
 
   @media (max-width: 640px) {

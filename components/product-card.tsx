@@ -77,7 +77,7 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
                 <ButtonLink
                   href={`/product/${product.handle}`}
                   variant="primary"
-                  className="w-full"
+                  className="w-full !py-2 !px-3 md:!py-2.5 md:!px-4 !text-[10px] md:!text-xs"
                   aria-label={`Add ${product.title} to cart`}
                 >
                   Add to Cart

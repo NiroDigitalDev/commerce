@@ -11,10 +11,10 @@ export default function ShopLayout({
 }) {
   return (
     <>
-      <div className="mx-auto flex max-w-(--breakpoint-2xl) flex-col gap-8 px-4 pb-4 text-black md:flex-row dark:text-white">
+      <div className="mx-auto flex max-w-(--breakpoint-2xl) flex-col gap-6 md:gap-8 px-4 pb-4 text-black md:flex-row dark:text-white">
         <div className="order-first w-full flex-none md:sticky md:top-4 md:self-start md:max-w-[200px]">
           <Collections />
-          <div className="mt-8">
+          <div className="mt-6 md:mt-8">
             <FilterList list={sorting} title="Sort by" />
           </div>
           <Suspense fallback={null}>

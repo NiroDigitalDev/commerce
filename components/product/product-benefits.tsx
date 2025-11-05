@@ -1,7 +1,10 @@
+"use client";
+
 import benefitsImage from "@/assets/benefits.png";
 import { Reveal } from "@/components/animations";
 import ButtonLink from "components/button-link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const benefits = [
   {
@@ -117,10 +120,19 @@ const benefits = [
 ];
 
 export function ProductBenefits() {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section className="product-benefits-section">
       <div className="product-benefits-grid">
-        <div className="product-benefits-image-container">
+        <div className="product-benefits-image-container md:block hidden">
           <Reveal delay={0.2} direction="up">
             <div className="product-benefits-image-wrapper">
               <Image
@@ -135,7 +147,15 @@ export function ProductBenefits() {
           </Reveal>
         </div>
 
-        <div className="product-benefits-content">
+        <div 
+          className="product-benefits-content product-benefits-content-mobile"
+          style={isMobile ? {
+            backgroundImage: `url(${benefitsImage.src})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          } : {}}
+        >
           <div className="product-benefits-inner">
             <Reveal delay={0.3} direction="up">
               <div className="product-benefits-header">

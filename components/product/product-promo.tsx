@@ -1,7 +1,10 @@
+"use client";
+
 import promoImage from "@/assets/promo.png";
 import { Reveal } from "@/components/animations";
 import ButtonLink from "components/button-link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const stats = [
   {
@@ -31,10 +34,27 @@ const stats = [
 ];
 
 export function ProductPromo() {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section className="product-promo-section">
       <div className="product-promo-grid">
-        <div className="product-promo-content">
+        <div 
+          className="product-promo-content product-promo-content-mobile"
+          style={isMobile ? {
+            backgroundImage: `url(${promoImage.src})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          } : {}}
+        >
           <div className="product-promo-inner">
             <Reveal delay={0.2} direction="up">
               <div className="product-promo-header">
@@ -79,7 +99,7 @@ export function ProductPromo() {
           </div>
         </div>
 
-        <div className="product-promo-image-container">
+        <div className="product-promo-image-container md:block hidden">
           <Reveal delay={0.2} direction="up">
             <div className="product-promo-image-wrapper">
               <Image

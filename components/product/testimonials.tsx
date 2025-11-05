@@ -2,6 +2,13 @@
 
 import { Reveal } from "@/components/animations";
 import { SectionHeader } from "@/components/shared";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { useEffect, useRef, useState } from "react";
 
 interface Testimonial {
@@ -114,7 +121,8 @@ export function ProductTestimonials() {
           delay={0.2}
         />
         <Reveal delay={0.3} direction="up">
-          <div className="testimonials-videos-wrapper">
+          {/* Desktop Grid - Hidden on mobile */}
+          <div className="hidden md:block testimonials-videos-wrapper">
             {testimonials.map((testimonial, index) => (
               <div
                 key={testimonial.id}
@@ -148,6 +156,44 @@ export function ProductTestimonials() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Mobile Carousel - Hidden on desktop */}
+          <div className="md:hidden">
+            <Carousel
+              opts={{
+                align: "center",
+                loop: true,
+              }}
+              className="w-full px-4"
+            >
+              <CarouselContent>
+                {testimonials.map((testimonial) => (
+                  <CarouselItem key={testimonial.id} className="basis-[85%]">
+                    <div className="testimonial-video-wrapper testimonial-video-wrapper-mobile">
+                      <video
+                        src={testimonial.videoUrl}
+                        className="testimonial-video testimonial-video-mobile"
+                        muted
+                        loop
+                        playsInline
+                        autoPlay
+                        preload="metadata"
+                      />
+                      <div className="testimonial-overlay">
+                        <div className="testimonial-info">
+                          <h3 className="testimonial-name">{testimonial.name}</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="mt-6 flex justify-center gap-3">
+                <CarouselPrevious className="static translate-x-0 translate-y-0" />
+                <CarouselNext className="static translate-x-0 translate-y-0" />
+              </div>
+            </Carousel>
           </div>
         </Reveal>
       </div>
