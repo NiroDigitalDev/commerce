@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import { Reveal } from "@/components/animations";
 import { SectionHeader } from "@/components/shared";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { Clock, Mail, MapPin, Phone, Send } from "lucide-react";
+import { useState } from "react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
